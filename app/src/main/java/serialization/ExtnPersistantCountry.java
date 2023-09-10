@@ -1,22 +1,32 @@
-package models;
+package serialization;
 
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
-import java.io.Serializable;
+import java.io.*;
 import java.util.Calendar;
 import java.util.Date;
 
+@NoArgsConstructor
 @AllArgsConstructor
 @ToString
 @EqualsAndHashCode
-public class ExtnPersistantTime implements Serializable {
+public class ExtnPersistantCountry implements Externalizable {
 
-    @Getter @Setter private Date time;
-    public ExtnPersistantTime() { time = Calendar.getInstance().getTime(); }
+    private static final Long serialVersionUID = 1L;
 
+    @Getter @Setter private String name;
+    @Getter @Setter private int code;
+
+
+    @Override
+    public void writeExternal(ObjectOutput objectOutput) throws IOException {
+        objectOutput.writeUTF(name);
+        objectOutput.writeInt(code);
+    }
+
+    @Override
+    public void readExternal(ObjectInput objectInput) throws IOException, ClassNotFoundException {
+        this.name = objectInput.readUTF();
+        this.code = objectInput.readInt();
+    }
 }
