@@ -3,7 +3,8 @@
  */
 package basic;
 
-import models.PersistantTime;
+import serialization.PersistantTime;
+import generics.*;
 
 public class App {
     public String getGreeting() {
@@ -12,7 +13,8 @@ public class App {
 
     public static void main(String[] args) {
         System.out.println(new App().getGreeting());
-        PersistantTime time = new PersistantTime();
-
+        // PersistantTime time = new PersistantTime();
+        AllAboutGenerics ag = new AllAboutGenerics();
     }
+
 }
