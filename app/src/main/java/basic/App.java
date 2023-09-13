@@ -14,7 +14,7 @@ public class App {
     public static void main(String[] args) {
         System.out.println(new App().getGreeting());
         // PersistantTime time = new PersistantTime();
-        AllAboutGenerics ag = new AllAboutGenerics();
+        Generics2 ag = new Generics2();
     }
 
 }

@@ -9,7 +9,7 @@ class GenericClass<T> {
     public T getData() { return this.data; }
 }
 
-public class SimpleGenerics {
+public class Generics1 {
     public static void main(String[] args) {
         // Initialize the generic class with Integer data
         GenericClass<Integer> igc = new GenericClass<>(5);
