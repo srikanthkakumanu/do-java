@@ -72,4 +72,8 @@ Ex:- </br>`public <T,G> List<T> arrayToList(<T> a, Function<T, G> mapper)`
 - When we use <I>**extends**</I> keyword in Generics context, it extends a class (if the restricted type is a class) and implements an interface (if the restricted type is an interface).It means we can use that super class/interface methods within bounded type class. Ex:- `t.intValue();`
 - A type parameter can have <I>multiple bounds</I> (Ex:-`<T extends B1 & B2 & B3>`).
 - A type variable with multiple bounds is a subtype of all the types listed in the bound. If one of the bounds is a class, it must be specified first. 
+
+**Wild cards**
+
+
 </div>
