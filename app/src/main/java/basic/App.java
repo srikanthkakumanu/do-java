@@ -15,6 +15,7 @@ public class App {
         System.out.println(new App().getGreeting());
         // PersistantTime time = new PersistantTime();
         Generics2 ag = new Generics2();
+        
     }
 
 }

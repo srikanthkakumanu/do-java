@@ -1,0 +1,23 @@
+Main: Status of Thread 0 : NEW
+Main: Status of Thread 1 : NEW
+Main: Status of Thread 2 : NEW
+Main: Status of Thread 3 : NEW
+Main: Status of Thread 4 : NEW
+Main:- [ ID: 14, Name: My Thread 0, Priority: 10, Old State: NEW, New State: RUNNABLE] 
+*****************************************************************************************
+Main:- [ ID: 15, Name: My Thread 1, Priority: 1, Old State: NEW, New State: RUNNABLE] 
+*****************************************************************************************
+Main:- [ ID: 16, Name: My Thread 2, Priority: 10, Old State: NEW, New State: RUNNABLE] 
+*****************************************************************************************
+Main:- [ ID: 17, Name: My Thread 3, Priority: 1, Old State: NEW, New State: RUNNABLE] 
+*****************************************************************************************
+Main:- [ ID: 18, Name: My Thread 4, Priority: 10, Old State: NEW, New State: RUNNABLE] 
+*****************************************************************************************
+Main:- [ ID: 15, Name: My Thread 1, Priority: 1, Old State: RUNNABLE, New State: TERMINATED] 
+*****************************************************************************************
+Main:- [ ID: 14, Name: My Thread 0, Priority: 10, Old State: RUNNABLE, New State: TERMINATED] 
+*****************************************************************************************
+Main:- [ ID: 16, Name: My Thread 2, Priority: 10, Old State: RUNNABLE, New State: TERMINATED] 
+*****************************************************************************************
+Main:- [ ID: 18, Name: My Thread 4, Priority: 10, Old State: RUNNABLE, New State: TERMINATED] 
+*****************************************************************************************
