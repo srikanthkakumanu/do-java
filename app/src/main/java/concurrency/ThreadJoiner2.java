@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.concurrent.TimeUnit;
 
 
-public class Rough {
+public class ThreadJoiner2 {
     public static void main(String[] args) {
         
         Runnable datasourceLoader = () -> {
