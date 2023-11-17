@@ -5,7 +5,7 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.IntStream;
 
-public class Rough {
+public class ThreadLocalExample {
 
     private static final ThreadLocal<SimpleDateFormat> formatter = ThreadLocal
             .withInitial(() -> new SimpleDateFormat("yyyyMMdd HHmm"));
@@ -25,7 +25,6 @@ public class Rough {
     };
 
     public static void main(String[] args) {
-        // Rough r = new Rough();
         IntStream.range(1, 10).forEach(i -> {
             Thread t = new Thread(r, "-" + i);
             try {
