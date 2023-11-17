@@ -34,4 +34,5 @@
 
 <H4><B>2.2 Locks</B></H4>
 
+Locks are an alternative to basic synchronization.
 </div>
