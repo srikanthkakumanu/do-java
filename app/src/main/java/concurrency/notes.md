@@ -66,6 +66,7 @@ There are 3 important Lock implementations, which are:
     - More efficient than Reentrant lock as it provides separate locking mechanism for reads and writes. 
     - It improves performance when resources more read than writes.
     - It provides only <B>Pessimistic Locking</B>.
+    - Lock downgrading (from write to read) is possible. But not read to write.
 - StampedLock (From Java 8+) 
     - More efficient than above two locks.
     - It provides <B>Optimistic Locking</B>.
