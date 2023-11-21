@@ -6,22 +6,13 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 public class ReentrantReadWriteLocks {
     public static void main(String[] args) {
 
-        
-
-        Thread t1 = new Thread("T1") {
-            public void run() {
-                SimpleReentrantReadWriteLock srl = new SimpleReentrantReadWriteLock(1);
-                long temp = srl.incrementAndGet();
-                System.out.printf("Thread: %s, Value: %d\n", getName(), temp);
-            };
+        Runnable r = () -> {
+            SimpleReentrantReadWriteLock srl = new SimpleReentrantReadWriteLock(1);
+            long temp = srl.incrementAndGet();
+            System.out.printf("Thread: %s, Value: %d\n", Thread.currentThread().getName(), temp);
         };
-        Thread t2 = new Thread("T2") {
-            public void run() {
-                SimpleReentrantReadWriteLock srl = new SimpleReentrantReadWriteLock(1);
-                long temp = srl.incrementAndGet();
-                System.out.printf("Thread: %s, Value: %d\n", getName(), temp);
-            };
-        }; 
+        Thread t1 = new Thread(r, "T1");
+        Thread t2 = new Thread(r, "T2");
         t1.start(); t2.start();
     } 
 }
