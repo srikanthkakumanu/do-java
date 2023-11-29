@@ -29,11 +29,17 @@ It provides various ways to support synchronization.
 
 1. Basic synchronization (synchronized keyword)
 2. Locks
-3. Semaphore - Maintain the permits. The permits that control thread access to limited no. of shared resources.
-4. Condition Object - Allow thread to block until a condition becomes true.
+3. Condition Object - Allow thread to block until a condition becomes true.
+
+The below also useful for synchronization and thread coordination which offer out-of-the-box solution.
+<B>Concurrent Utilities for synchronization or Thread co-ordination</B>
+
+4. Semaphore - Maintain the permits. The permits that control thread access to limited no. of shared resources.
 5. CountDownLatch - Allow one or more threads to wait until a set of operations to perform in other threads complete.
 6. CyclicBarrier - Allow a set of threads to all wait for each other to reach a common barrier point.
 7. Phaser - A more flexible reusable synchronization barrier. It is more flexible than CountDownLatch and CyclicBarrier.
+8. Exchanger
+9. SynchronousQueue
 
 <H4><B>2.1 Synchronized</B></H4>
 
@@ -67,8 +73,52 @@ There are 3 important Lock implementations, which are:
     - It improves performance when resources more read than writes.
     - It provides only <B>Pessimistic Locking</B>.
     - Lock downgrading (from write to read) is possible. But not read to write.
+    - It implements ReadWriteLock, and uses AbstractQueuedSynchronizer internally.
 - StampedLock (From Java 8+) 
-    - More efficient than above two locks.
+    - More efficient and scalable than above two locks.
+    - It is NOT Re-entrant lock implementation. However it provides three locking modes described below.
     - It provides <B>Optimistic Locking</B>.
+    - It does not implement ReadWriteLock, and does not use AbstractQueuedSynchronizer internally.
+    - It provides three locking modes:
+        - Read
+        - Write
+        - Optimistic Read: It is main difference between StampedLock and ReentrantReadWriteLock and synchronization overhead is very low.
+    
+<H4><B>2.3 Condition</B></H4>
+
+- A Lock can be associated with one or more conditions. Condition provides the ability for a thread to wait for some condition to occur while executing the <B>critical section</B>.
+- It is an alternative to `wait()`, `notify() ` and `notifyAll()` (from `java.lang.Object`). Condition interface provides `await()`, `signal()` and `signalAll()` methods.
+- The purpose of conditions is to allow threads to have control of a lock and check whether a condition is true or not. 
+- If the condition is false, thread will be suspended until another thread wakes it up.
+- The `java.util.concurrent.locks.Condition` interface provide mechanisms to suspend and wakes up a thread.
+
+<H4><B>2.4 Semaphore</B></H4>
+
+- <B>A semaphore is a non-negative integer</B> that can be atomically incremented and decremented to control access to a shared resource/object. <B>It acts as a counter that control access</B> to one ore more shared resources/objects.
+- It is used to synchronize interactions between multiple threads.
+- There are two types of semaphores:
+    - Counting semaphores: Allow an arbitrary resource count.
+    - Binary semaphores: Restricts the count to values either 0 or 1. Inherantly synonymous to lock vs. unlock or unavailable vs. available.
+- It’s a synchronization tool that does not require busy waiting. Hence, the OS does not waste the CPU cycles when a process can’t operate due to a lack of access to a resource.
+- <B>Semaphores are more flexible then basic synchronization and locks.</B>
+- When used for a resource pool, it tracks how many resources are free and not which resources are free.
+- Semaphores are used when the limited resources are available.
+
+<H4><B>2.5 CountDownLatch</B></H4>
+
+- A CountDownLatch is a construct that a thread waits on while other threads count down on the latch until it reaches zero.
+- Essentially by using CountDownLatch, we can cause a thread to block until other threads have completed given task. A CountDownLatch (like Semaphore) has a counter field which you can decrement when required. We can use it to block a calling thread until it is down to zero.
+- While doing parallel processing, we set the counter with same value of no. of cores we have.
+- A CountDownLatch maintains a count of tasks.
+- CountDownLatch is different from CyclicBarrier, because the count never resets.
+
+<H4><B>2.6 CyclicBarrier</B></H4>
+
+- A CyclicBarrier is a synchronizer that allows a set of threads to wait for each other to reach a common execution point.
+- <B>That execution point is called barrier. That barrier is called cyclic because it can be re-used after the waiting threads are released.</B>
+- A CyclicBarrier is a reusable construct where a group of threads waits together until all of the threads arrive at a common point.
+- A CyclicBarrier maintains a count of threads.
+- When the barrier trips in CyclicBarrier, the count resets to its original value.
+
 
 </div>
