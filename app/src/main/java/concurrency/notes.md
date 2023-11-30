@@ -111,6 +111,7 @@ There are 3 important Lock implementations, which are:
 - While doing parallel processing, we set the counter with same value of no. of cores we have.
 - A CountDownLatch maintains a count of tasks.
 - CountDownLatch is different from CyclicBarrier, because the count never resets.
+- <B>In CountDownLatch, the number of threads cannot be configured dynamically as the number must be supplied when creating the instance but in Phaser it is possible.</B>
 
 <H4><B>2.6 CyclicBarrier</B></H4>
 
@@ -121,4 +122,8 @@ There are 3 important Lock implementations, which are:
 - When the barrier trips in CyclicBarrier, the count resets to its original value.
 
 
+<H4><B>Phaser</B></H4>
+
+- A Phaser is a barrier on which <B>dynamic number of threads</B> need to wait before continuing execution. 
+- A Phaser allows us to build a logic in which threads need to wait on the barrier before going to next step of execution.
 </div>
