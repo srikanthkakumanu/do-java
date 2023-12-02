@@ -158,4 +158,27 @@ Executor Framework has the following executor interfaces, implementations and ut
 
 - <B>Type of task a thread performs </B>such as I/O operation, network operation etc.
 - <B>Desired fairness between threads</B>.
+
+<H4><B>3.2 ForkJoin Framework</B></H4>
+
+- Java 7 introduced Fork/Join framework to help speed up parallel processing by attempting to use all the available processor cores. 
+- It follows <B>divide and conquer approach</B>. It means framework first forks recursively breaking tasks into smaller independant sub tasks until they are simple enough to run asynchronously.
+- After that, join part begins, the result of all sub tasks recursively join into a single result.
+- Internally it balances the workload of threads with the help of <B>Work Stealing Algorithm</B>. Simply put, free threads try to “steal” work from deques of busy threads.
+- To provide effective parallel execution, It uses a pool of threads called `ForkJoinPool`. This pool manages worker threads of type `ForkJoinWorkerThread`.
+- Worker threads can execute only one task at a time, but the `ForkJoinPool` doesn’t create a separate thread for every single subtask. Instead, each thread in the pool has its own <B>double-ended queue (or deque, pronounced “deck”)</B> that stores tasks.
+- `ForkJoinTask` - Base type for tasks that are executed inside `ForkJoinPool`.
+- `RecursiveAction` - for void tasks.
+- `RecursiveTask<V>` - for tasks that return value.
+
+There are two approaches to submit tasks to fork/join thread pool.
+1. via `submit()` or `execute()`: Need to explicitly join after submit or execute.
+
+`forkJoinPool.execute(customRecursiveTask);
+int result = customRecursiveTask.join();`
+
+2. via `invoke()`: It forks the task wait for the result, does not need any manual joining.
+
+`int result = forkJoinPool.invoke(customRecursiveTask);`
+
 </div>
