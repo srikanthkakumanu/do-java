@@ -39,7 +39,9 @@ The below also useful for synchronization and thread coordination which offer ou
 6. CyclicBarrier - Allow a set of threads to all wait for each other to reach a common barrier point.
 7. Phaser - A more flexible reusable synchronization barrier. It is more flexible than CountDownLatch and CyclicBarrier.
 8. Exchanger
-9. SynchronousQueue
+9. BlockingQueues - BlockingQueue, LinkedBlockingQueue (Unbounded), LinkedTransferQueue (Unbounded), ArrayBlockingQueue (Bounded), SynchronousQueue (Bounded), PriorityBlockingQueue (Bounded)
+10. DelayQueue
+11. Future and CompletableFuture - Asynchronous processing
 
 <H4><B>2.1 Synchronized</B></H4>
 
@@ -122,8 +124,38 @@ There are 3 important Lock implementations, which are:
 - When the barrier trips in CyclicBarrier, the count resets to its original value.
 
 
-<H4><B>Phaser</B></H4>
+<H4><B>2.7 Phaser</B></H4>
 
 - A Phaser is a barrier on which <B>dynamic number of threads</B> need to wait before continuing execution. 
 - A Phaser allows us to build a logic in which threads need to wait on the barrier before going to next step of execution.
+- A Phaser is a mix of CyclicBarrier and CountDownLatch. We can define number of parties registered may vary over time (Like count in CountDownLatch and tasks/parties in CyclicBarrier).
+
+<H3><B>3. Executors</B></H3>
+
+Java concurrency provides executors as below.
+
+- Executor Framework - define 3 executor object types.
+- Thread Pools - are the most common way of executor implementation.
+- Fork/Join Framework - From Java 7, It takes advantage of multiple processors.
+
+<H4><B>3.1 Executor Framework</B></H4>
+
+- Executor framework is a task scheduling framework. 
+- It decouples the creation and management of of Threads from rest of the application logic.
+- It standardizes task invocation, scheduling, execution and control of asynchronous tasks according to a set of execution policies.
+
+Executor Framework has the following executor interfaces, implementations and utilities.
+
+- `Executor` - A simple and high level interface that supports launching new tasks.
+- `ExecutorService` - A sub interface of `Executor`, that manages the life cycle of tasks and `Executor` itself. It supports asynchronous task execution.
+- `ScheduledExecutorService` - A sub interface of `ExecutorService` that supports future and/or periodic tasks.
+- `Executors` - A factory and utility class for `Executor`, `ExecutorService`, `ScheduledExecutorService`, `ThreadFactory` and `Callable`.
+- Thread Pool Implementations - `ThreadPoolExecutor`, `ScheduledThreadPoolExecutor`.
+
+<H4><B>3.1.1 How to choose Ideal num. of Threads</B><H4>
+
+- <B>No. of CPUs any computer has.</B> If one CPU has two cores, then we should consider it as 2 CPUs. At most a CPU will run only one thread at a time. That means for one CPU with 2 cores, It can run two threads at time. There are some CPUs as hardware specification can run more than one thread. For example, one CPU with 4 core and each core can run 2 threads at a time. That means 4 * 2 * 2 = 16 threads we can run. 
+
+- <B>Type of task a thread performs </B>such as I/O operation, network operation etc.
+- <B>Desired fairness between threads</B>.
 </div>

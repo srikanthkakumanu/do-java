@@ -12,7 +12,7 @@ import java.util.concurrent.locks.Lock;
  * This example demonstrates classic Producer/Consumer problem in concurrency
  * by using Condition and ReentrantLock.
  */
-public class ProducerConsumer {
+public class ProducerConsumerLocks {
 
     private Stack<String> stack = new Stack<>();
     private static final int MAX_CAPACITY = 5;
@@ -23,7 +23,7 @@ public class ProducerConsumer {
     public static void main(String[] args) {
 
         int numOfThreads = 2;
-        ProducerConsumer object = new ProducerConsumer();
+        ProducerConsumerLocks object = new ProducerConsumerLocks();
         ExecutorService service = Executors.newFixedThreadPool(numOfThreads);
         
         service.execute(() -> {
