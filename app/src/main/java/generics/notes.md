@@ -79,4 +79,9 @@ Ex:- </br>`public <T,G> List<T> arrayToList(<T> a, Function<T, G> mapper)`
 **Wild cards**
 - ? is used as wild card for unknown type.
 
+**Comparator and Comparable**
+
+When working with custom types or trying to compare objects that are not directly comparable, we need to make use of a comparison strategy. The comparison strategy can be built simply by using `Comparator` and `Comparable` interfaces.
+
+- `Comparable` interface used to define a strategy of comparing an object with other objects of the same type. This is called the class’s **“natural ordering.”**
 </div>
