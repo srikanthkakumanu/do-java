@@ -16,6 +16,13 @@ Generics introduced in J2SE 5. It allows a type (classes and interfaces) or meth
 - When you use the defined type parameter, then it is called <I>**Type argument**</I>. Just like below, Here Integer is called type argument.</br>
     `Box<Integer> b = new Box<>()`
 
+**Benefits of Generics**
+
+- It  eliminates explicit type casts.
+- Provide stronger type checks at compile-time.
+- Enables the implementation of generic classes and  algorithms.
+
+
 **Standard Generic conventions** (Not rules)
 
 - E = Element (used in Collections framework)
