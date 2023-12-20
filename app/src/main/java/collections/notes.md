@@ -1,8 +1,8 @@
-I<div style="text-align: justify">
+<div style="text-align: justify">
 
 ## **Java Collections**
 
-</div>
+
 
 A **Collection** is a container - is an object that groups multiple elements/objects into a single unit. It is used to store, retrieve, modify and aggregate data.
 
@@ -16,11 +16,25 @@ The core collection interfaces are foundation to the framework.
 
 **Collection** - It extends from **Iterable** and root interface for all collections such as **List, Set, Queue, Deque**. All core collection interfaces are ***generic types***.
 
+## **Collections Summary**
+
+| **Collection** | **Thread-safe** | **Null?** | **Duplicates** | **Ordered**  |
+| **List**                                                     |
+| **ArrayList**  | No          | Yes   | Yes        |Yes       |
+| **ArrayList**  | No          | Yes   | Yes        |Yes       |
+| **ArrayList**  | No          | Yes   | Yes        |Yes       |
+| **ArrayList**  | No          | Yes   | Yes        |Yes       |
+
 ## **Collection**
 
-* The root interface for all collections such ***List, Set, Queue and Deque***.
+* The root interface for all collections such as ***List, Set, Queue and Deque***.
 * It extends from ***Iterable***.
 * All core collection interfaces are ***generic types***.
+* We can **traverse all types of collections in 3 ways**:
+  * By using **aggregate operations**
+  * By using **enhanced for-each**
+  * By using **Iterators**
+* Bulk Operations: Hello
 
 ## **List**
 
@@ -69,9 +83,10 @@ Get/Offer - retrieve/get an element via `element()` and `peek()` methods.
 * It is **not ordered**.
 * It does **not allow duplicate keys**.
 
-
 ## **SortedMap**
 
 * It is extended from Map.
 * It is **ordered for keys unlike standard Map mentioned above**Sl.
 * It does **not allow duplicate keys**.
+
+</div>
