@@ -2,6 +2,7 @@ package collections;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.ArrayList;
 
 /**
  * There are 3 ways to iterate over a collection.
@@ -11,25 +12,54 @@ import java.util.List;
  */
 public class Iterables {
     public static void main(String[] args) {
-        // 1st
+        
+        // Different ways to iterate a collection
+        // also by using standard iterator
+        iterate();
+
+        // Iterate using a ListIterator
+        listIterate();
+
+        // Iterate multiple collections in parallel
+        iterateMultipleCollections();
+    }
+
+    /**
+     * Demonstrates different ways to iterate the elements by using standard iterator
+     * from a collection.
+     */
+    private static void iterate() {
+        System.out.println("Iterating the elements in different ways..");
+        
         List<Integer> nums = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9);
 
-        // below exhibit slow performance as it creates a new iterator for each iteration.
+        // 1st:- below for-each exhibits poor performance as it creates a new iterator 
+        //       for each iteration.
         for (var num : nums)
             System.out.println(num);
 
-        // 2nd
+        // 2nd:- Using standard Iterator
         Iterator<?> i = nums.iterator();
         while (i.hasNext())
             System.out.println(i.next());
 
-        // 3rd
+        // 3rd:- Using forEachRemaining from Iterable<E>
+        i.forEachRemaining(System.out::println);
+
+        // 4th:- Using standard forEach of a collection
         nums.forEach(System.out::println);
 
-        // 4th
 
-        // Iterate multiple collections in parallel
-        iterateMultipleCollections();
+    }
+
+    /** 
+     * Demonstrate iteration using ListIterator
+     * 
+     */
+    private static void listIterate() {
+        System.out.println("Iterating a list using ListIterator...");
+        List<Integer> nums = new ArrayList<>(List.of(2, 5, 6, 1, 39, 321));
+        
     }
 
     /**
@@ -40,7 +70,7 @@ public class Iterables {
      * Below example iterates multiple collections in parallel.
      */
     private static void iterateMultipleCollections() {
-
+        System.out.println("Iterating over multiple collections in parallel");
         // Iterate two arraylist simultaneously
         var countries = List.of("India", "United States", "Ireland", "Switzerland", "Malaysia");
         var codes = List.of("+91", "+1", "+353", "+41", "+60");

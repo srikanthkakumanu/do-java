@@ -1,6 +1,6 @@
 package collections;
 
-import java.util.Iterator;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Collection;
 import java.util.stream.Collectors;
@@ -10,7 +10,9 @@ import java.util.stream.Collectors;
  */
 public class TheCollection {
     public static void main(String[] args) {
+
         bulk();
+        aggregate();
     }
 
     /**
@@ -19,8 +21,8 @@ public class TheCollection {
      * Note: Aggregate methods does not change the original collection.
      */
     private static void bulk() {
-        Collection<Integer> c = List.of(2, 23, 43, 22, 43);
-        Collection<Integer> some = List.of(23, 43);
+        Collection<Integer> c = new ArrayList<>(List.of(2, 23, 43, 22, 43));
+        Collection<Integer> some = new ArrayList<>(List.of(23, 43));
 
         System.out.println(c.contains(2));
         System.out.println(c.containsAll(some));
@@ -31,10 +33,10 @@ public class TheCollection {
     /**
      * Examples of all standard aggregate methods that collection provides.
      */
-    private static void aggreateOps() {
+    private static void aggregate() {
 
-        Collection<Integer> c = List.of(2, 23, 43, 22, 43);
-        Collection<Integer> mirrors = List.of(23, 43);
+        Collection<Integer> c = new ArrayList<>(List.of(2, 23, 43, 22, 43));
+        Collection<Integer> some = new ArrayList<>(List.of(23, 43));
 
         // filter and for-each
         c.parallelStream()
