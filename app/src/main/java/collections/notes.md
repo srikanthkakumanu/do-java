@@ -76,17 +76,12 @@ The following core collection interfaces are foundation to the framework.
 
 ## **Queue**
 
-It is **ordered** collection in FIFO manner.
-
-It order elements in **FIFO (First-In and First-Out)** manner except the elements natural order or Priority Queues.
-
-Along with standard collection interface methods, it provides additional insertion, removal, retrieval/inspection operations.
-
-head - Removes an element via `remove()` and `poll()` methods.
-
-tail - Insert new elements at the tail of the queue via `offer()` and `add()` methods.
-
-Get/Offer - retrieve/get an element via `element()` and `peek()` methods.
+* It is **ordered** collection in FIFO manner.
+* It order elements in **FIFO (First-In and First-Out)** manner except the elements natural order or Priority Queues.
+* Along with standard collection interface methods, it provides additional insertion, removal, retrieval/inspection operations.
+* **head** - Removes an element via `remove()` and `poll()` methods.
+* **tail** - Insert new elements at the tail of the queue via `offer()` and `add()` methods.
+* **Get/Offer** - retrieve/get an element via `element()` and `peek()` methods.
 
 ## **Deque (Double ended Queue)**
 
