@@ -65,6 +65,7 @@ The following core collection interfaces are foundation to the framework.
 * Does **NOT allow duplicates**.
 * It models the mathematical set abstraction.
 * Allows at most **one NULL value only**.
+* HashSet is fastest and LinkedHashSet is faster and TreeSet is slow performant compared to other two.
 
 ## **SortedSet**
 
@@ -72,7 +73,8 @@ The following core collection interfaces are foundation to the framework.
 * It is an **Ordered** collection unlike standard Set mentioned above.
 * It maintain elements in **ascending order**.
 * Does **NOT allow duplicates**.
-*
+* TreeSet is the implementation class.
+
 
 ## **Queue**
 
@@ -95,12 +97,14 @@ The following core collection interfaces are foundation to the framework.
 * It maps keys to values.
 * It is **not ordered**.
 * It does **NOT allow duplicate keys** because keys should be unique.
+* HashMap is fastest and LinkedHashMap is faster and TreeMap is slow performant compared to other two.
 
 ## **SortedMap**
 
 * It is extended from Map.
 * It is **ordered for keys unlike standard Map mentioned above**.
 * It does **NOT allow duplicate keys**.
+* TreeMap is implementation class.
 
 ## **Collection Iterables**
 
