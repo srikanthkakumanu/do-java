@@ -133,5 +133,13 @@ Use the iterators:
 * We can add a new value at any point.
 * Set (Modify) a new value at that point.
 
-  
+ ### **Spliterator**
+
+ * ***Spliterator is split (partitions the data) + iterator***.
+ * Besides traversing sequences of data like Iterator, Spliterator can also partitions it. 
+ * It is core component of Stream API as all the stream implementations uses th spliterator internally.
+ * **The core advantage of Spliterator is by splitting data into sub sequences and it allows parallel processing.** However not every data sequence can be split into multiple parts. 
+ * **Another advantage is that Spliterator<T> can be used for iterating both the Java Collection Framework types and is the core of Stream API.**
+ * The benefit of `Spliterator.tryAdvance()` is that it combines the `hasNext()` and `next()` operations into one method.
+ 
 </div>
