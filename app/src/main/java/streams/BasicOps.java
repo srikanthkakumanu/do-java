@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Stream;
+import java.util.List;
 
 public class BasicOps {
     public static void main(String[] args) {
@@ -42,6 +43,34 @@ public class BasicOps {
 
         System.out.printf("Total Count of Books for 1915: %d \n", countOfBooks.get());
 
+
+        List<Integer> nums = List.of(32, 53, 32, 34, 32, 21, 43, 53);
+        long distinctCount = nums
+                                .stream() // source of data
+                                .distinct() // intermediate operation - which returns Stream<T>
+                                .count(); // terminal operation - which gives a definite result
+        System.out.println(distinctCount);
+
+        boolean isExist = nums
+                            .stream() // source of data
+                            .anyMatch(e -> e == 32); // takes a Predicate and returns definite result
+        System.out.println(isExist);
+
+        ArrayList<String> list = new ArrayList<>();
+        list.add("One");
+        list.add("OneAndOnly");
+        list.add("Derek");
+        list.add("Change");
+        list.add("factory");
+        list.add("justBefore");
+        list.add("Italy");
+        list.add("Italy");
+        list.add("Thursday");
+        list.add("");
+        list.add("");
+
+        Stream<String> sm = list.stream().filter(v -> v.contains("d"));
+        sm.forEachOrdered(System.out::println);
     }
 }
 
