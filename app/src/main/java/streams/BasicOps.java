@@ -6,6 +6,8 @@ import java.util.Collection;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Stream;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class BasicOps {
     public static void main(String[] args) {
@@ -44,6 +46,7 @@ public class BasicOps {
         System.out.printf("Total Count of Books for 1915: %d \n", countOfBooks.get());
 
 
+        // distinct + count operation
         List<Integer> nums = List.of(32, 53, 32, 34, 32, 21, 43, 53);
         long distinctCount = nums
                                 .stream() // source of data
@@ -56,6 +59,7 @@ public class BasicOps {
                             .anyMatch(e -> e == 32); // takes a Predicate and returns definite result
         System.out.println(isExist);
 
+        // filter operation
         ArrayList<String> list = new ArrayList<>();
         list.add("One");
         list.add("OneAndOnly");
@@ -71,6 +75,54 @@ public class BasicOps {
 
         Stream<String> sm = list.stream().filter(v -> v.contains("d"));
         sm.forEachOrdered(System.out::println);
+
+        // map operation
+        list.stream()
+            .filter(v -> v.contains("d"))
+            .map(v -> v.concat("###"))
+            .forEachOrdered(System.out::println);
+        
+
+        // flatmap operation
+        List<List<String>> strList = Arrays.asList(
+                                            Arrays.asList("A"), 
+                                            Arrays.asList("B"));
+        
+        strList.stream()
+                .flatMap(Collection::stream)
+                .collect(Collectors.toList()).stream().forEachOrdered(System.out::println);;
+
+        // match operations
+        System.out.println(list.stream().anyMatch(v -> v.contains("h")));
+        System.out.println(list.stream().allMatch(v -> v.contains("h")));
+        System.out.println(list.stream().noneMatch(v -> v.contains(("h"))));
+
+        System.out.println(Stream.empty().anyMatch(Objects::nonNull));
+
+        // reduce operation
+        nums = List.of(2, 3, 4);
+        // System.out.println(nums.stream().reduce(1, (a, b)-> {
+        //     int result = (a + b);
+        //     System.out.printf("[a = %d, b = %d, result = %d] \n", a, b, result);
+        //     return result;
+        // }));
+        System.out.println(nums.stream().reduce(1, (a, b) -> a + b));
+
+        // map + reduce operation
+        // System.out.println(nums.stream()
+        //     .map(v -> {
+        //         int result = v + 2;
+        //         System.out.printf("\nmap - [v = %d, result(v+2) = %d] \n", v, result);
+        //         return result;
+        //     })
+        //     .reduce(1, (a, b)-> {
+        //         int result = (a + b);
+        //         System.out.printf("\nreduce - [a = %d, b = %d, result = %d] \n", a, b, result);
+        //         return result;
+        //     }));
+        System.out.println(nums.stream().map(v -> v + 2).reduce(1, (a, b) -> a + b));
+        
+
     }
 }
 
