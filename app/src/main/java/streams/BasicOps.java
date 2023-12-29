@@ -5,12 +5,39 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Stream;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
 import java.util.List;
+import java.util.LinkedList;
+import java.util.Set;
+import java.util.Collections;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.Collector;
+import java.util.OptionalInt;
+import java.util.stream.IntStream;
 
 public class BasicOps {
     public static void main(String[] args) {
+        aggregateOps();
+    }
+
+    /**
+     * Basic stream operations such as:
+     * count
+     * of
+     * parallel stream
+     * distinct
+     * filter
+     * Atomic operation (concurrency)
+     * map
+     * collect
+     * reduce
+     */
+    private static void aggregateOps() {
         String[] ar = new String[] {"a", "b", "c", "d", "e", "a", "b", "c", "d", "e"};
         // Basic stream creation
         Stream<String> stream = Arrays.stream(ar);
@@ -122,37 +149,87 @@ public class BasicOps {
         //     }));
         System.out.println(nums.stream().map(v -> v + 2).reduce(1, (a, b) -> a + b));
         
+        /*
+         * reduce() can have three params: 
+         * - identity = initial value for an accumulator
+         * - accumulator = A function to aggregate elements
+         * - combiner = A function to aggregate results of accumulator
+         */
+        OptionalInt optInt = IntStream
+                                .rangeClosed(1, 5)
+                                .reduce((a, b) -> a + b);
+        System.out.println(optInt.getAsInt());
+        
+        System.out.println(IntStream
+                                .rangeClosed(0, 5)
+                                .reduce(10, (a, b) -> a + b));
 
+        int vv = Stream.of(1, 2)
+                        .reduce(10, 
+                                (a, b) -> a + b, 
+                                (a, b) -> {
+                                    return a + b;
+                                });
+        System.out.println("vv = " + vv);
+        
+        // collect operation
+        List<Product> products = Arrays.asList(
+                                                new Product(10, "potatoes"), 
+                                                new Product(12, "Orange"), 
+                                                new Product(22, "Bread"),
+                                                new Product(12, "Lemon"));
+        
+        products.stream()
+                .map(Product::getName)
+                .collect(Collectors.toList())
+                .forEach(System.out::println);
+
+        System.out.println(products.stream()
+                .map(Product::getName)
+                .collect(Collectors.joining(", ", "[", "]")));
+        
+        System.out.println(products.stream().collect(Collectors.averagingInt(Product::getPrice)));
+        System.out.println(products.stream().collect(Collectors.summingInt(Product::getPrice)));
+        System.out.println(products.stream().collect(Collectors.summarizingInt(Product::getPrice)));
+
+        // grouping
+        Map<Integer, List<Product>> groupByPrice = products.stream()
+                                                            .collect(Collectors.groupingBy(Product::getPrice));
+        groupByPrice.entrySet().forEach(System.out::println);
+
+        // partitioning
+        Map<Boolean, List<Product>> partitionByPrice = products.stream()
+                                                                .collect(Collectors
+                                                                            .partitioningBy(element -> element.getPrice() > 15));
+        partitionByPrice.entrySet().forEach(System.out::println);
+
+        Set<Product> unmodifiableSet = products.stream()
+                                                    .collect(Collectors.collectingAndThen(Collectors.toSet(),
+                                                                                                        Collections::unmodifiableSet));
+        
+        // custom collector - convert to LinkedList
+        Collector<Product, ?, LinkedList<Product>> toLinkedList =
+                                                Collector.of(LinkedList::new, LinkedList::add, 
+                                                                (first, second) -> { 
+                                                                        first.addAll(second); 
+                                                                        return first; 
+                                                                });
+        LinkedList<Product> linkedListOfProducts = products.stream().collect(toLinkedList);                                                                                                        
+                                
     }
 }
 
+@Data
+@AllArgsConstructor
+class Product {
+    private int price;
+    private String name;
 
+}
+
+@Data
+@AllArgsConstructor
 class Book { 
     private String name, author;
     private int yearPublished;
-    
-    
-    public Book(String name, String author, int yearPublished) {
-        this.name = name;
-        this.author = author;
-        this.yearPublished = yearPublished;
-    }
-    public String getName() {
-        return name;
-    }
-    public String getAuthor() {
-        return author;
-    }
-    public int getYearPublished() {
-        return yearPublished;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-    public void setYearPublished(int yearPublished) {
-        this.yearPublished = yearPublished;
-    }  
 }
