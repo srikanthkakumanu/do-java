@@ -5,9 +5,10 @@ import java.util.List;
 import java.util.Collection;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import java.util.Objects;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * Basic example of all Collection<E> methods usage by using a ArrayList concrete implementation.
@@ -37,6 +38,27 @@ public class TheCollection {
         System.out.println(c.add(null));
         System.out.println(c.add(null));
         c.forEach(System.out::println);
+
+        List<Integer> listOfNums = List.of(1, 3, 2, 4);
+        listOfNums.forEach(System.out::println); // maintains the order by an index
+        System.out.println("-----------");
+        Set<Integer> setOfNums = Set.of(2, 1, 3, 4);
+        setOfNums.forEach(System.out::println); // does not maintain the order each time gives different value
+
+        var numsListInWords = List.of("one", "two", "three", "four", "five", "six",
+                                    "seven", "eight", "nine", "ten", "eleven", "twelve");
+        
+        var numsSetInWords = new HashSet<>(numsListInWords);
+        System.out.println(numsSetInWords);
+        // does not maintain the order each time gives different value
+        numsSetInWords.add("thirteen");
+        System.out.println(numsSetInWords);
+
+        Set<String> v = new TreeSet<>();
+        v.add("two"); v.add("one"); v.add(null); v.add("three"); 
+        v.add("five");
+        v.forEach(System.out::println);
+
         // Removing Nulls from a collection
         System.out.println("Removed Nulls: " + c.removeAll(Collections.singleton(null)));
         c.forEach(System.out::println);

@@ -30,13 +30,7 @@ The following core collection interfaces are foundation to the framework.
 
 ## **Collections Cheatsheet - Summary**
 
-| **Collection** | **Thread-safe** | **Null?** | **Duplicates** | **Ordered**  |
-| **List**                                                     |
-| **ArrayList**  | No          | Yes   | Yes        |Yes       |
-| **ArrayList**  | No          | Yes   | Yes        |Yes       |
-| **ArrayList**  | No          | Yes   | Yes        |Yes       |
-| **ArrayList**  | No          | Yes   | Yes        |Yes       |
-
+![Collections Cheatsheet](collections_summary.PNG "Collections Cheatsheet - Summary")
 ## **Collection**
 
 * The root interface for all collections such as ***List, Set, Queue and Deque***.
@@ -55,13 +49,13 @@ The following core collection interfaces are foundation to the framework.
 
 ## **List**
 
-* It is an **ordered** collection (sometimes called **sequence**).
+* It is an **ordered** collection (sometimes called **sequence**). **Ordered** means that each element is associated with an index, hence when we try to add/remove/modify an element using that specific index, same value is guaranteed. Lists always add the elements at the end of the list. Most common data structure is used to implement list is ArrayList.
 * Allows **duplicates**.
 * Allows more than **one NULL values**.
 
 ## **Set**
 
-* It is **NOT an ordered** collection.
+* It is **NOT an ordered** collection. Set does not maintain an order as it does not expose any index (compared to List). Hence when we iterate/add/remove/modify an element there is no gaurantee that same element is operated. Most commonly used Set is HashSet and Internally it maintains a HashMap (It again maintains an array internally). When that array is full, it will be rehashed to bigger array, During this process all the key/value pairs of HashMap will be rehashed and thats why it changes the encounter order. But LinkedHashSet can give the encounter order.
 * Does **NOT allow duplicates**.
 * It models the mathematical set abstraction.
 * Allows at most **one NULL value only**.
@@ -141,4 +135,15 @@ Use the iterators:
  * **Another advantage is that Spliterator<T> can be used for iterating both the Java Collection Framework types and is the core of Stream API.**
  * The benefit of `Spliterator.tryAdvance()` is that it combines the `hasNext()` and `next()` operations into one method.
  
+ ### **Sequenced Collections**
+
+ - Sequenced collections are modelling a common behavior shared by **ordered collections** and **sorted collections**. 
+ - It offers **defined encounter order**.  The encounter order does not imply the physical positioning of elements. It just means that one element is either before (closer to the first element) or after (closer to the last element) the other element. The order will have well defined first element, the second element and so forth upto the last element.
+ - `List` and `Deque` both define an encounter order, but their common supertype, `Collection` does not. Similarly, `Set` does not define an encounter order, but some subtypes such as `SortedSet` and `LinkedHashSet` do. Support for encounter order is thus spread across the type hierarchy, and operations related to encounter order are either inconsistent or missing. Thats why SequencedCollection brings that uniformity for defined encountered order.
+ - It has `addFirst(), addLast(), getFirst(), getLast(), removeFirst(), removeLast(), reversed()` methods for Collection implementations (For Map there are different methods).
+ - `SequencedCollection` derived from `Collection`. 
+
+![SequencedCollection Hierarchy](https://www.baeldung.com/wp-content/uploads/2023/09/new-hierarchy-diagram.png "SequencedCollection Class Hierarchy")
+
+
 </div>
