@@ -2,7 +2,7 @@
 
 **What is a Generic?**
 
-Generics introduced in J2SE 5. It allows a type (classes and interfaces) or method to operate on objects of various types while providing compile-time type safety.
+Generics introduced in J2SE 5. It allows a type (classes and interfaces) or method to operate on objects of various types while providing compile-time type safety. **Generics means Parameterized Types** and supports **Parameterized Polymorphism**.
 
 **Why Generics?**
 

@@ -86,7 +86,7 @@ final record Person(String id, String name, Integer age) {
 
 public class Records {
     public static void main(String[] args) {
-        Person p = new Person("123-456", "Thomas Neumann", 23);
+        Person p = new Person("Thomas Neumann", 23);
         System.out.println(p.toString());
         System.out.println(p.nameInUpperCase());
         System.out.println(Person.greetings());
