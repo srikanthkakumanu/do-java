@@ -4,9 +4,6 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 /**
  * Method references (:: operator) are special type of lambda expressions. They are often used to 
@@ -31,7 +28,7 @@ import lombok.NoArgsConstructor;
                 .forEach(System.out::println); // 1. static method reference
         
         // 2. Instance methods of particular objects / Reference to an instance method of an object
-        Comparator<BiCycle> compareByFrames = (a, b) -> a.getFrameSize().compareTo(b.getFrameSize());
+        Comparator<BiCycle> compareByFrames = (a, b) -> a.frameSize().compareTo(b.frameSize());
 
         List<BiCycle> bicycles = List.of(new BiCycle("Hero", 32), new BiCycle("Rally", 32), 
                                         new BiCycle("Honda", 24), new BiCycle("Honda", 14));
@@ -64,15 +61,8 @@ import lombok.NoArgsConstructor;
     }
  }
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-class BiCycle {
-    private String brand;
-    private Integer frameSize;
-
+record BiCycle(String brand, Integer frameSize) {
     public BiCycle(String brand) {
-        this.brand = brand;
-        this.frameSize = 0;
+        this(brand, 0);
     }
 }
