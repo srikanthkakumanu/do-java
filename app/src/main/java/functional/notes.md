@@ -14,7 +14,7 @@ Key to the understanding Java's functional programming/implementation of Lambda 
 - A lambda expression itself cannot specify type parameters. Thus, a lambda expression cannot be generic. But a functional interface can be generic. 
 - A lambda expression can throw an exception. However if it throws a checked exception, then it must be compatible with the exception that is mentioned at throws clause of abstract method of functional interface.
 
-### **Method References (:: Operator) **
+### **Method References (:: Operator)**
 
 - A method reference provides a way to refer to a method without executing it. **It relates to lambda expressions because It too requires a target type context that consists of compatible functional interface.**
 - When evaluated, a method reference also creates an instance of the functional interface.
