@@ -16,34 +16,44 @@ repositories {
 }
 
 dependencies {
-    // Use JUnit Jupiter for testing.
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.1'
+    // // Use JUnit Jupiter for testing.
+    // testImplementation 'org.junit.jupiter:junit-jupiter:5.10.1'
 
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    // testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
-    // This dependency is used by the application.
-    implementation 'com.google.guava:guava:33.0.0-jre'
-    // Project Lombok
-    compileOnly 'org.projectlombok:lombok:1.18.30'
-	annotationProcessor 'org.projectlombok:lombok:1.18.30'
-	testCompileOnly 'org.projectlombok:lombok:1.18.30'
-	testAnnotationProcessor 'org.projectlombok:lombok:1.18.30'
+    // // This dependency is used by the application.
+    // implementation 'com.google.guava:guava:33.0.0-jre'
+    // // Project Lombok
+    // compileOnly 'org.projectlombok:lombok:1.18.30'
+	// annotationProcessor 'org.projectlombok:lombok:1.18.30'
+	// testCompileOnly 'org.projectlombok:lombok:1.18.30'
+	// testAnnotationProcessor 'org.projectlombok:lombok:1.18.30'
+
+    implementation('com.google.guava:guava:33.0.0-jre')
+    compileOnly('org.projectlombok:lombok:1.18.30')
+    annotationProcessor('org.projectlombok:lombok:1.18.30')
+    testCompileOnly('org.projectlombok:lombok:1.18.30')
+    testAnnotationProcessor('org.projectlombok:lombok:1.18.30')
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
 java {
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(17))
+        languageVersion.set(JavaLanguageVersion.of(21))
     }
 }
 
 application {
     // Define the main class for the application.
-    //mainClass = 'basic.App'
-    mainClass = 'collections.TheCollection'
+    mainClass = 'basic.App'
 }
 
-tasks.named('test') {
-    // Use JUnit Platform for unit tests.
-    useJUnitPlatform()
+testing {
+    suites {
+        // Configure the built-in test suite
+        test {
+            // Use JUnit4 test framework
+            useJUnit('4.13.2')
+        }
+    }
 }
