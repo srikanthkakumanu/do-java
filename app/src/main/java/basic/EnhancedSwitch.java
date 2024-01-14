@@ -38,7 +38,12 @@ public class EnhancedSwitch {
         // switchExprAndYield();
         // switchWithArrow();
         // switchWithArrowAndBlockExpr();
-        vowelExample(); // vowel using all latest features
+        // vowelExample(); // vowel using all latest features
+        // below using all features (also using pattern matching + when condition)
+        Circle c = new Circle(3);
+        surfaceAreaOfShape(c);
+        Square s = new Square(5);
+        surfaceAreaOfShape(s);
     }
 
     /**
@@ -116,6 +121,7 @@ public class EnhancedSwitch {
         };
         if(isVowel) System.out.println(c + " is vowel.");
     }
+
     /**
      * 1 & 2 Switch Expression and Yield statement
      * ------------------------------------
@@ -200,4 +206,25 @@ public class EnhancedSwitch {
         }
         System.out.printf("Priority Level for event code: %d is %d\n", eventCode, priorityLevel);
     }
+
+    /**
+     * Calculates the surface/area of a shape
+     * switch expression with pattern matching and when condition
+     * @param shape Either circle or square
+     */
+    private static void surfaceAreaOfShape(Shape shape) {
+        double surface = switch(shape) {
+            case Circle circle when circle.radius() > 0 ->
+                Math.PI * circle.radius() * circle.radius();
+            case Square square ->
+                square.edge() * square.edge();
+            case null, default -> 0d;
+        };
+        System.out.printf("Surface of Shape is:- %f\n", surface);
+    }
 }
+
+
+interface Shape {}
+record Circle(int radius) implements Shape {}
+record Square(int edge) implements Shape {}
