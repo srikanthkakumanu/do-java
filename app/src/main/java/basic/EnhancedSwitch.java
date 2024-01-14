@@ -213,13 +213,23 @@ public class EnhancedSwitch {
      * @param shape Either circle or square
      */
     private static void surfaceAreaOfShape(Shape shape) {
+//        double surface = switch(shape) {
+//            case Circle circle when circle.radius() > 0 ->
+//                Math.PI * circle.radius() * circle.radius();
+//            case Square square ->
+//                square.edge() * square.edge();
+//            case null, default -> 0d;
+//        };
+
+        // it can also be written more compact like below
         double surface = switch(shape) {
-            case Circle circle when circle.radius() > 0 ->
-                Math.PI * circle.radius() * circle.radius();
-            case Square square ->
-                square.edge() * square.edge();
+            case Circle(int radius) when radius > 0 ->
+                    Math.PI * radius * radius;
+            case Square(int edge) ->
+                    edge * edge;
             case null, default -> 0d;
         };
+
         System.out.printf("Surface of Shape is:- %f\n", surface);
     }
 }
