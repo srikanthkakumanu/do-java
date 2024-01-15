@@ -1,19 +1,19 @@
 package basic;
 
 /**
- * Traditional switch statement enhanced since Java 14 with following additions.
- * 1. switch expression:-
+ * Since Java 14, The traditional switch statement's enhanced further with these following additions.
+ * 1. Switch expression: -
  *      A switch expression is essentially that returns a value. One way to return
  *      a value of a switch expression is by using a yield statement.
  * 2. yield statement:-
  *      - Yield terminates the switch immediately just like
- *          break statement but difference is that yield can return a value.
+ *          break statement, but the difference is that yield can return a value.
  *      - In switch expression when yield is used, break statement is not allowed.
  *      - Yield is a context-sensitive keyword which means that outside the switch
  *          statement yield is just an identifier which has no meaning.
- * 3. support for list of case constants:-
+ * 3. Support for a list of case constants: -
  *      - From Java 14, traditional Case stacking can be enhanced
- *          by writing all constants with commas in single case. i.e. case constant list.
+ *          by writing all constants with commas in a single case. I.e., case constant list.
  * 4. The case with an arrow (case 'X' -> ):-
  *      - Differences -- (case 'X' :) vs. (case 'X' ->)
  *          - arrow case does not fall through to next case.
@@ -47,10 +47,10 @@ public class EnhancedSwitch {
     }
 
     /**
-     * 4. The case with an arrow (case 'X' -> ):-
+     * 4. The case with an arrow (case 'X' -> ) :-
      * - Differences -- (case 'X' :) vs. (case 'X' ->)
      *      - arrow case does not fall through to next case. Thus,
-     *          no need of break statement and yield statement.
+     *          no need for break statement and yield statement.
      *      - The arrow case provides a shorthand way to supply a
      *          value when used in a switch expression.
      *      - target of an arrow case can be:
@@ -74,7 +74,7 @@ public class EnhancedSwitch {
     }
 
     /**
-     * Swith case statement with arrow and block expression.
+     * Switch case statement with arrow and block expression.
      */
     private static void switchWithArrowAndBlockExpr() {
         int eventCode = 9300;
@@ -125,14 +125,14 @@ public class EnhancedSwitch {
     /**
      * 1 & 2 Switch Expression and Yield statement
      * ------------------------------------
-     * Switch Expression:- Switch expression is essentially that returns a value.
+     * Switch Expression: - Switch expression is essentially that returns a value.
      * One way to return a value of a switch expression is by using a yield statement.
-     * yield statement:-
+     * yield statement: -
      *      1. Yield terminates the switch immediately just like
-     *      break statement but difference is that yield can return a value.
-     *      2. In switch expression when yield is used, break statement is not allowed.
-     *      3. Yield is a context-sensitive keyword which means that outside the switch
-     *      statement yield is just an identifier which has no meaning.
+     *          a break statement, but the difference is that yield can return a value.
+     *      2. In switch expression when yield is used, a break statement is not allowed.
+     *      3. Yield is a context-sensitive keyword that means that outside the switch
+     *          statement, yield is just an identifier that has no meaning.
      */
     static private void switchExprAndYield() {
         int eventCode = 6010;
@@ -233,8 +233,8 @@ public class EnhancedSwitch {
         System.out.printf("Surface of Shape is:- %f\n", surface);
     }
 }
-
-
 interface Shape {}
 record Circle(int radius) implements Shape {}
 record Square(int edge) implements Shape {}
+
+
