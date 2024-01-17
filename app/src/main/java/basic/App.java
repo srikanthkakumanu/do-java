@@ -5,6 +5,7 @@ package basic;
 
 import serialization.PersistantTime;
 import generics.*;
+import concurrency.SimpleSemaphores;
 
 public class App {
     public String getGreeting() {
@@ -14,5 +15,6 @@ public class App {
     public static void main(String[] args) {
         System.out.println(new App().getGreeting());
         // PersistantTime time = new PersistantTime();
+        SimpleSemaphores.main(null);
     }
 }

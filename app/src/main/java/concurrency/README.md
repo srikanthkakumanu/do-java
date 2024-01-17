@@ -31,42 +31,50 @@ It provides various ways to support synchronization.
 2. Locks
 3. Condition Object - Allow thread to block until a condition becomes true.
 
-The below also useful for synchronization and thread coordination which offer out-of-the-box solution.
+The below is also useful for synchronization and thread coordination which offer out-of-the-box solution.
 <B>Concurrent Utilities for synchronization or Thread co-ordination</B>
 
 4. Semaphore - Maintain the permits. The permits that control thread access to limited no. of shared resources.
 5. CountDownLatch - Allow one or more threads to wait until a set of operations to perform in other threads complete.
 6. CyclicBarrier - Allow a set of threads to all wait for each other to reach a common barrier point.
 7. Phaser - A more flexible reusable synchronization barrier. It is more flexible than CountDownLatch and CyclicBarrier.
-8. Exchanger
+8. Exchanger - Simplifies the exchange of data between two threads. Exchanger simply waits until two separate threads call its exchange() method.
 9. BlockingQueues - BlockingQueue, LinkedBlockingQueue (Unbounded), LinkedTransferQueue (Unbounded), ArrayBlockingQueue (Bounded), SynchronousQueue (Bounded), PriorityBlockingQueue (Bounded)
 10. DelayQueue
 11. Future and CompletableFuture - Asynchronous processing
+
+| Synchronizers  | Description                                                                         |
+|----------------|-------------------------------------------------------------------------------------|
+| Semphore       | A classic semaphore that maintain the permits (by using counter - no. of threads).  |
+| CountDownLatch | Waits until a specified number of events have occurred. Maintains internal counter. |
+| CyclicBarrier  | Enable a group of threads to wait at a predefined execution point.                  |
+| Exchanger      | Exchanges the data between two threads.                                             |
+| Phaser         | Synchronize the threads that advance through multiple phases of an operation.       |
 
 <H4><B>2.1 Synchronized</B></H4>
 
 Any Java object can be used a <B>Monitor</B> object:
 
 - By marking methods (which require mutual exclusion aka Mutex) with synchronized keyword.
-- By declaring any code block that are marked with synchronzied keyword.
-- synchronized block ensure that only one thread can obtain a lock on a specific object (called Monitor).
+- By declaring any code block marked with synchronized keyword.
+- synchronized block ensures that only one thread can obtain a lock on a specific object (called Monitor).
 - synchronized is not recommended to use with primitive classes/objects ex. Integer, String etc.
 - We can declare static synchronized methods but lock applies only at class level. It means only one thread can access static synchronized objects/methods at a time for the whole class.
 - We can declare static synchronized blocks and synchronized blocks in the same class but above rules apply.
 - They can only block threads that are running within same JVM.
 
 <B>Limitations of Synchonrized blocks</B>
-- Only one thread can enter synchronized block at a time.
+- Only one thread can enter a synchronized block at a time.
 - No guarantee of sequence in which waiting threads gets access to the synchronized block.
 - Performance overhead of entering and exiting of synchronized blocks.
-    - Low overhead  - when sync. block is not already blocked.
+    - Low overhead - when sync. block is not already blocked.
     - High overhead - when sync. block is already locked by another thread. 
 
 <H4><B>2.2 Locks</B></H4>
 
 Locks are an alternative to basic synchronization.
 
-There are 3 important Lock implementations, which are:
+There are three important Lock implementations, which are:
 - ReentrantLock 
     - provides recursive locks. But both reads and writes under one lock.
     - boolean true value in the ReentrantLock(boolean fairness) provides lock fairness which may add additional overhead but ensures no lock congestion happens.
@@ -96,20 +104,34 @@ There are 3 important Lock implementations, which are:
 
 <H4><B>2.4 Semaphore</B></H4>
 
-- <B>A semaphore is a non-negative integer</B> that can be atomically incremented and decremented to control access to a shared resource/object. <B>It acts as a counter that control access</B> to one ore more shared resources/objects.
+- A semaphore controls the access to a shared resource: 
+  - **through the use of a counter (no. of permits)**. In general, **counter's value is set to no. of threads (one thread per core)**.
+  - If the counter is greater than zero, then access is allowed (using `acquire()`).
+  - If the counter is zero then access is denied (using `release()`).
+  - **What the counter is counting are _permits_ that allow access to a shared resource**. Thus, to access the resource, a thread must be granted a permit from the semaphore.
+    - The thread that wants access to shared resource tries to acquire the permit. If semaphore's count is greater than zero, then the **thread acquires the permit and the counter is decremented**.
+    - Otherwise, the thread **will be blocked until a permit can be acquired**.
+    - When the thread no longer needs access to the shared resource, **it releases the permit, which causes the semaphore's count to be incremented**.
+
+- <B>A **semaphore is a non-negative integer**</B> that can be atomically incremented and decremented to control access to a shared resource/object. <B>It acts as a counter that control access</B> to one ore more shared resources/objects.
 - It is used to synchronize interactions between multiple threads.
 - There are two types of semaphores:
-    - Counting semaphores: Allow an arbitrary resource count.
-    - Binary semaphores: Restricts the count to values either 0 or 1. Inherantly synonymous to lock vs. unlock or unavailable vs. available.
+    - **Counting semaphores**: Allow an arbitrary resource count.
+    - **Binary semaphores**: Restricts the count to values either 0 or 1. Inherently synonymous to lock vs. unlock or unavailable vs. available.
 - It’s a synchronization tool that does not require busy waiting. Hence, the OS does not waste the CPU cycles when a process can’t operate due to a lack of access to a resource.
-- <B>Semaphores are more flexible then basic synchronization and locks.</B>
+- <B>Semaphores are more flexible than basic synchronization and locks.</B>
 - When used for a resource pool, it tracks how many resources are free and not which resources are free.
 - Semaphores are used when the limited resources are available.
 
 <H4><B>2.5 CountDownLatch</B></H4>
 
+- The CountDownLatch is required when we want our thread to wait until one or more events occurred.
+  - A CountDownLatch is created with a count of the number of events that must occur before the latch is released.
+  - Every time an event happens, the count is decremented.
+  - When the count reaches zero, the latch opens.
+- CountDownLatch is a powerful yet **easy-to-use synchronization object that is appropriate whenever a thread must wait for one or more events to occur**. 
 - A CountDownLatch is a construct that a thread waits on while other threads count down on the latch until it reaches zero.
-- Essentially by using CountDownLatch, we can cause a thread to block until other threads have completed given task. A CountDownLatch (like Semaphore) has a counter field which you can decrement when required. We can use it to block a calling thread until it is down to zero.
+- Essentially, by using CountDownLatch, we can cause a thread to block until other threads have completed given task. A CountDownLatch (like Semaphore) has a counter field which you can decrement when required. We can use it to block a calling thread until it is down to zero.
 - While doing parallel processing, we set the counter with same value of no. of cores we have.
 - A CountDownLatch maintains a count of tasks.
 - CountDownLatch is different from CyclicBarrier, because the count never resets.
@@ -117,9 +139,11 @@ There are 3 important Lock implementations, which are:
 
 <H4><B>2.6 CyclicBarrier</B></H4>
 
-- A CyclicBarrier is a synchronizer that allows a set of threads to wait for each other to reach a common execution point.
+- A CyclicBarrier is used when n a set of **two or more threads must wait at a predetermined execution point until all threads in the set have reached that point**.
+  - **_numThreads_** specifies the number of threads that must reach the barrier before execution continues.
+- A CyclicBarrier is a synchronizer that allows a set of threads to **wait for each other to reach a common execution point**.
 - <B>That execution point is called barrier. That barrier is called cyclic because it can be re-used after the waiting threads are released.</B>
-- A CyclicBarrier is a reusable construct where a group of threads waits together until all of the threads arrive at a common point.
+- A CyclicBarrier is a reusable construct where a group of threads waits together until all the threads arrive at a common point.
 - A CyclicBarrier maintains a count of threads.
 - When the barrier trips in CyclicBarrier, the count resets to its original value.
 
@@ -129,6 +153,12 @@ There are 3 important Lock implementations, which are:
 - A Phaser is a barrier on which <B>dynamic number of threads</B> need to wait before continuing execution. 
 - A Phaser allows us to build a logic in which threads need to wait on the barrier before going to next step of execution.
 - A Phaser is a mix of CyclicBarrier and CountDownLatch. We can define number of parties registered may vary over time (Like count in CountDownLatch and tasks/parties in CyclicBarrier).
+
+<H4><B>2.8 Exchanger</B></H4>
+
+- It is designed to **simplify the exchange of data between two threads**.
+- The operation of an Exchanger is astoundingly simple: **it simply waits until two separate threads call its exchange( ) method**.
+  - When that occurs, it exchanges the data supplied by the threads.
 
 <H3><B>3. Executors</B></H3>
 
