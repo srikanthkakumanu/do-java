@@ -63,7 +63,7 @@ There are also some operator based functional interfaces such as UnaryOperator (
 
 ## **Functional Programming (FP) Principles and Concepts**
 
-There some some key principles for functional programming:
+There are some key principles for functional programming:
 
 - First-class and higher-order functions
 - Pure functions
@@ -144,7 +144,7 @@ Every monad need to obey three important laws:
 - The main benefit of recursion is that it helps to eliminate the side effects i.e. looping (in impertive paradigm).
 - **Head Recursion**: 
   - Making the recursive call before calculating the result at each step or in words at the head of the calculation.
-  - A **drawback of this type of recursion** is that every step has to hold the state of all previous steps until we reach the base case. This is not really a problem for small numbers, but holding the state for large numbers can be inefficient.
+  - A **drawback for this type of recursion** is that every step has to hold the state of all previous steps until we reach the base case. This is not really a problem for small numbers, but holding the state for large numbers can be inefficient.
 - **Tail Recursion**:
   - We ensure that the recursive call is the last call a function makes.
   - Java still does not have support for this tail-call recursion optimization.
