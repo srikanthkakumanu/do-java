@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.function.DoubleFunction;
 import java.util.function.Function;
 import java.util.function.IntFunction;
+import java.util.function.UnaryOperator;
 import java.util.stream.Collectors;
 
 import lombok.AllArgsConstructor;
@@ -134,6 +135,7 @@ public class LambdasAndFunctionals {
         // 2.4 Recursion
         System.out.println(factorialWithHeadRecursion(10)); // head recursion
         System.out.println(factorialWithTailRecursion(10, 1)); // tail recursion
+
     }
 
     /**
