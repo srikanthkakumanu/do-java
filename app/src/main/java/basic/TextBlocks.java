@@ -1,8 +1,8 @@
 package basic;
 
 /**
- * Text blocks are introduced in Java 15.
- * A text block is a sequence of characters that occupy more than one line.
+ Text blocks are introduced in Java 15.
+ A text block is a sequence of characters that occupy more than one line.
  */
 public class TextBlocks {
     public static void main(String[] args) {

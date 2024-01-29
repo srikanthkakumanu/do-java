@@ -1,8 +1,8 @@
 package concurrency;
 
 /**
- * UncaughtExceptionHandler is to attach an exception handler
- * to a thread to handle any un caught exceptions.
+ UncaughtExceptionHandler is to attach an exception handler
+ to a thread to handle any un caught exceptions.
  */
 public class UncaughtExceptionHandlerDemo {
         public static void main(String[] args) throws InterruptedException {

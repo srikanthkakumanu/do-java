@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.Calendar;
 
 /**
- * Basic Serialization Example. Please check SerializationTest.java for Serializable and Externalizable interface examples.
+ Basic Serialization Example. Please check SerializationTest.java for Serializable and Externalizable interface examples.
  */
 public class Serialize {
     public static void main(String[] args) {
@@ -13,7 +13,7 @@ public class Serialize {
     }
 
     /**
-     * Writes serialized time object to a file.
+     Writes serialized time object to a file.
      */
     private static void writeFlattenTime() {
         String file = "time.ser";

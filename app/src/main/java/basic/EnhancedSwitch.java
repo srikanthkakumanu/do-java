@@ -1,34 +1,34 @@
 package basic;
 
 /**
- * Since Java 14, The traditional switch statement's enhanced further with these following additions.
- * 1. Switch expression: -
- *      A switch expression is essentially that returns a value. One way to return
- *      a value of a switch expression is by using a yield statement.
- * 2. yield statement:-
- *      - Yield terminates the switch immediately just like
- *          break statement, but the difference is that yield can return a value.
- *      - In switch expression when yield is used, break statement is not allowed.
- *      - Yield is a context-sensitive keyword which means that outside the switch
- *          statement yield is just an identifier which has no meaning.
- * 3. Support for a list of case constants: -
- *      - From Java 14, traditional Case stacking can be enhanced
- *          by writing all constants with commas in a single case. I.e., case constant list.
- * 4. The case with an arrow (case 'X' -> ):-
- *      - Differences -- (case 'X' :) vs. (case 'X' ->)
- *          - arrow case does not fall through to next case.
- *              Thus, no need of break statement.
- *          - The arrow case provides a "shorthand" way to supply a
- *              value when used in a switch expression.
- *          - target of an arrow case can be:
- *              - case constant -> expression;
- *              - case constant -> { block of expression } - when using
- *                  a block, you must use yield to supply a value to a switch
- *                  expression.
- *              - case constant -> throw an exception.
- *      - We can avoid yield or break statements.
- *      - We cannot mix arrow cases with traditional colon (:) cases in the
- *          same switch. We must choose one or the other.
+ Since Java 14, The traditional switch statement's enhanced further with these following additions.
+ 1. Switch expression: -
+      A switch expression is essentially that returns a value. One way to return
+      a value of a switch expression is by using a yield statement.
+ 2. yield statement:-
+      - Yield terminates the switch immediately just like
+          break statement, but the difference is that yield can return a value.
+      - In switch expression when yield is used, break statement is not allowed.
+      - Yield is a context-sensitive keyword which means that outside the switch
+          statement yield is just an identifier which has no meaning.
+ 3. Support for a list of case constants: -
+      - From Java 14, traditional Case stacking can be enhanced
+          by writing all constants with commas in a single case. I.e., case constant list.
+ 4. The case with an arrow (case 'X' -> ):-
+      - Differences -- (case 'X' :) vs. (case 'X' ->)
+          - arrow case does not fall through to next case.
+              Thus, no need of break statement.
+          - The arrow case provides a "shorthand" way to supply a
+              value when used in a switch expression.
+          - target of an arrow case can be:
+              - case constant -> expression;
+              - case constant -> { block of expression } - when using
+                  a block, you must use yield to supply a value to a switch
+                  expression.
+              - case constant -> throw an exception.
+      - We can avoid yield or break statements.
+      - We cannot mix arrow cases with traditional colon (:) cases in the
+          same switch. We must choose one or the other.
  *
  */
 public class EnhancedSwitch {
@@ -47,20 +47,20 @@ public class EnhancedSwitch {
     }
 
     /**
-     * 4. The case with an arrow (case 'X' -> ) :-
-     * - Differences -- (case 'X' :) vs. (case 'X' ->)
-     *      - arrow case does not fall through to next case. Thus,
-     *          no need for break statement and yield statement.
-     *      - The arrow case provides a shorthand way to supply a
-     *          value when used in a switch expression.
-     *      - target of an arrow case can be:
-     *          - case constant -> expression;
-     *          - case constant -> { block of expression } - when using
-     *              a block, you must use yield to supply a value to a switch
-     *              expression.
-     *          - case constant -> throw an exception.
-     * - We cannot mix arrow cases with traditional colon (:) cases
-     *      in the same switch. We must choose one or the other.
+     4. The case with an arrow (case 'X' -> ) :-
+     - Differences -- (case 'X' :) vs. (case 'X' ->)
+          - arrow case does not fall through to next case. Thus,
+              no need for break statement and yield statement.
+          - The arrow case provides a shorthand way to supply a
+              value when used in a switch expression.
+          - target of an arrow case can be:
+              - case constant -> expression;
+              - case constant -> { block of expression } - when using
+                  a block, you must use yield to supply a value to a switch
+                  expression.
+              - case constant -> throw an exception.
+     - We cannot mix arrow cases with traditional colon (:) cases
+          in the same switch. We must choose one or the other.
      */
     private static void switchWithArrow() {
         int eventCode = 6010;
@@ -74,7 +74,7 @@ public class EnhancedSwitch {
     }
 
     /**
-     * Switch case statement with arrow and block expression.
+     Switch case statement with arrow and block expression.
      */
     private static void switchWithArrowAndBlockExpr() {
         int eventCode = 9300;
@@ -123,16 +123,16 @@ public class EnhancedSwitch {
     }
 
     /**
-     * 1 & 2 Switch Expression and Yield statement
-     * ------------------------------------
-     * Switch Expression: - Switch expression is essentially that returns a value.
-     * One way to return a value of a switch expression is by using a yield statement.
-     * yield statement: -
-     *      1. Yield terminates the switch immediately just like
-     *          a break statement, but the difference is that yield can return a value.
-     *      2. In switch expression when yield is used, a break statement is not allowed.
-     *      3. Yield is a context-sensitive keyword that means that outside the switch
-     *          statement, yield is just an identifier that has no meaning.
+     1 & 2 Switch Expression and Yield statement
+     ------------------------------------
+     Switch Expression: - Switch expression is essentially that returns a value.
+     One way to return a value of a switch expression is by using a yield statement.
+     yield statement: -
+          1. Yield terminates the switch immediately just like
+              a break statement, but the difference is that yield can return a value.
+          2. In switch expression when yield is used, a break statement is not allowed.
+          3. Yield is a context-sensitive keyword that means that outside the switch
+              statement, yield is just an identifier that has no meaning.
      */
     static private void switchExprAndYield() {
         int eventCode = 6010;
@@ -150,10 +150,10 @@ public class EnhancedSwitch {
         System.out.printf("Priority Level for event code: %d is %d\n", eventCode, priorityLevel);
     }
     /**
-     * 3. Support for list of case constants
-     * -------------------------------------
-     * From Java 14, traditional Case stacking can be enhanced
-     * by writing all constants with commas in single case. i.e. case constant list.
+     3. Support for list of case constants
+     -------------------------------------
+     From Java 14, traditional Case stacking can be enhanced
+     by writing all constants with commas in single case. i.e. case constant list.
      */
     private static void enhancedSwitchCaseConstantList() {
         int priorityLevel;
@@ -175,8 +175,8 @@ public class EnhancedSwitch {
         System.out.printf("Priority Level for event code: %d is %d\n", eventCode, priorityLevel);
     }
     /**
-     * In traditional switch, when two constants were both handled by same code sequence -
-     * then case stacking technique is used like shown below.
+     In traditional switch, when two constants were both handled by same code sequence -
+     then case stacking technique is used like shown below.
      */
     private static void traditionalSwitch() {
         int priorityLevel;
@@ -208,9 +208,9 @@ public class EnhancedSwitch {
     }
 
     /**
-     * Calculates the surface/area of a shape
-     * switch expression with pattern matching and when condition
-     * @param shape Either circle or square
+     Calculates the surface/area of a shape
+     switch expression with pattern matching and when condition
+     @param shape Either circle or square
      */
     private static void surfaceAreaOfShape(Shape shape) {
 //        double surface = switch(shape) {

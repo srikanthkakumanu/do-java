@@ -17,7 +17,7 @@ public class ThreadGroups {
             }
         };
 
-        int noOfThreads = 2 * Runtime.getRuntime().availableProcessors();
+        int noOfThreads = Runtime.getRuntime().availableProcessors();
         BasicThreadGroup btg = new BasicThreadGroup("BTG");
         IntStream.range(0, noOfThreads).forEach(i -> {
             Thread t = new Thread(btg, r);

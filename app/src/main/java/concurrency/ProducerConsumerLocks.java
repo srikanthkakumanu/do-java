@@ -9,8 +9,8 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 
 /**
- * This example demonstrates classic Producer/Consumer problem in concurrency
- * by using Condition and ReentrantLock.
+ This example demonstrates classic Producer/Consumer problem in concurrency
+ by using Condition and ReentrantLock.
  */
 public class ProducerConsumerLocks {
 
@@ -48,9 +48,9 @@ public class ProducerConsumerLocks {
         service.shutdown();
     }
     /**
-     * Producer which produces an item into stack.
-     * @param item
-     * @throws InterruptedException
+     Producer which produces an item into stack.
+     @param item
+     @throws InterruptedException
      */
     private void produce(String item) throws InterruptedException {
         try {
@@ -67,8 +67,8 @@ public class ProducerConsumerLocks {
     }
 
     /**
-     * Consumer which removes/consumes the item.
-     * @throws InterruptedException
+     Consumer which removes/consumes the item.
+     @throws InterruptedException
      */
     private void consume() throws InterruptedException {
         try {

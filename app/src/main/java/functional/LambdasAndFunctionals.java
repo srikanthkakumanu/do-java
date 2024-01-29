@@ -15,59 +15,59 @@ import lombok.Getter;
 import lombok.ToString;
 
 /**
- * 1. Functional programming principles and concepts using Java
- * 
- * 1.1 First-class Functions: All first-class functions are implicitly higher-order function
- *      1.1.1 Pass a function as a function argument
- *      1.1.2 Return a function from a function
- *      1.1.3 Function as values (first-class citizens)
- * 
- * 1.2. Higher-Order Functions: Possible only with first-class functions
- *      1.2.1 Pass a function as a function argument
- *      1.2.2 Return a function from a function
- * 
- * 1.3. Pure Functions: A pure function should be deterministic, means that it should return a 
- *      value based only on the arguments and should not have any side-effects (means it should
- *      be immutable). side-effects can be as simple as updating a local or global state.
- * 
- * 1.4. Immutability: Immutability refers to the property that an entity can't be modified after 
- *      being instantiated. In Java, data structures are not immutable by default. Thus, we have 
- *      to create immutable data structures and Java provides several built-in immutable types.
- * 
- * 1.5. Referential Transparency: <B> For referential transparency, we need our functions should be 
- *      pure and immutable.</B> We call an expression referentially transparent if replacing it 
- *      with its corresponding value has no impact on the program's behavior.
- * 
- * 2. Functional Programming Techniques:
- * 
- * 2.1 Function composition: Function composition means composing complex functions by combining 
- *      simpler functions. In Java, it can be achieved by using functional interfaces, which are 
- *      target types for lambda expressions and method references. Any interface with single 
- *      abstract method (SAM) can serve as a functional interface. Method chaining is the technique 
- *      to compose multiple functions.
- *      
- * 2.2 Monads: Many FP concepts derived from Category theory (A general theory of functions in Mathematics). 
- *      Monard is an abstraction, which allows us to wrap a value, apply set of transformations and get the 
- *      value back with all transformations applied.
- *      Monads are containers or structures that encapsulate values and computations. 
- *      It is an object that can map itself to different results based on transformations.
- *      There are two types of Monads: Unit and Bind.
- *      Every Monad must obey three laws: left idenity, right identity and associativity.
- *      In Java, Monad examples are: Optional, Stream, CompletableFuture etc.
- * 
- * 2.3 Currying: It is a mathematical technique of converting a function that takes multiple 
- *      arguments into a sequence of functions that take a single argument. It is a powerful 
- *      function composition technique where we don’t need to call a function with all its 
- *      arguments. A curried function does not realize its effect until it receives all 
- *      the arguments.
- * 
- * 2.4 Recursion: It allows us to breakdown a problem into smaller pieces. 
- *                The main benefit of recursion is that it helps to eliminate 
- *                the side effects i.e. looping (in impertive paradigm).
- *      Head recursion:- making the recursive call before calculating the result at each step 
- *                       or in words at the head of the calculation.
- *      Tail recursion:- we ensure that the recursive call is the last call a function makes.
- *                      Java still does not have support for this tail-call recursion.
+ 1. Functional programming principles and concepts using Java
+ 
+ 1.1 First-class Functions: All first-class functions are implicitly higher-order function
+      1.1.1 Pass a function as a function argument
+      1.1.2 Return a function from a function
+      1.1.3 Function as values (first-class citizens)
+ 
+ 1.2. Higher-Order Functions: Possible only with first-class functions
+      1.2.1 Pass a function as a function argument
+      1.2.2 Return a function from a function
+ 
+ 1.3. Pure Functions: A pure function should be deterministic, means that it should return a 
+      value based only on the arguments and should not have any side-effects (means it should
+      be immutable). side-effects can be as simple as updating a local or global state.
+ 
+ 1.4. Immutability: Immutability refers to the property that an entity can't be modified after 
+      being instantiated. In Java, data structures are not immutable by default. Thus, we have 
+      to create immutable data structures and Java provides several built-in immutable types.
+ 
+ 1.5. Referential Transparency: <B> For referential transparency, we need our functions should be 
+      pure and immutable.</B> We call an expression referentially transparent if replacing it 
+      with its corresponding value has no impact on the program's behavior.
+ 
+ 2. Functional Programming Techniques:
+ 
+ 2.1 Function composition: Function composition means composing complex functions by combining 
+      simpler functions. In Java, it can be achieved by using functional interfaces, which are 
+      target types for lambda expressions and method references. Any interface with single 
+      abstract method (SAM) can serve as a functional interface. Method chaining is the technique 
+      to compose multiple functions.
+      
+ 2.2 Monads: Many FP concepts derived from Category theory (A general theory of functions in Mathematics). 
+      Monard is an abstraction, which allows us to wrap a value, apply set of transformations and get the 
+      value back with all transformations applied.
+      Monads are containers or structures that encapsulate values and computations. 
+      It is an object that can map itself to different results based on transformations.
+      There are two types of Monads: Unit and Bind.
+      Every Monad must obey three laws: left idenity, right identity and associativity.
+      In Java, Monad examples are: Optional, Stream, CompletableFuture etc.
+ 
+ 2.3 Currying: It is a mathematical technique of converting a function that takes multiple 
+      arguments into a sequence of functions that take a single argument. It is a powerful 
+      function composition technique where we don’t need to call a function with all its 
+      arguments. A curried function does not realize its effect until it receives all 
+      the arguments.
+ 
+ 2.4 Recursion: It allows us to breakdown a problem into smaller pieces. 
+                The main benefit of recursion is that it helps to eliminate 
+                the side effects i.e. looping (in impertive paradigm).
+      Head recursion:- making the recursive call before calculating the result at each step 
+                       or in words at the head of the calculation.
+      Tail recursion:- we ensure that the recursive call is the last call a function makes.
+                      Java still does not have support for this tail-call recursion.
  */
 public class LambdasAndFunctionals {
     public static void main(String... args) {
@@ -121,9 +121,9 @@ public class LambdasAndFunctionals {
         // While our mass remains the same, gravity varies by the planet we’re on.
         // Function<Double, Function<Double, Double>> weight = gravity -> mass -> {
         //         System.out.println("Mass: " + mass + " Gravity: " + gravity);
-        //         return mass * gravity;
+        //         return mass gravity;
         // };
-        Function<Double, Function<Double, Double>> weight = gravity -> mass -> mass * gravity; 
+        Function<Double, Function<Double, Double>> weight = gravity -> mass -> mass * gravity;
 
         Function<Double, Double> weightOnEarth = weight.apply(9.81); // 9.81 - gravity
         System.out.println("My Weight on Earth : " + weightOnEarth.apply(60.0)); // 60.0 - mass
@@ -139,18 +139,18 @@ public class LambdasAndFunctionals {
     }
 
     /**
-     * Passing a function as an argument to a function
-     * @param s
-     * @param fn
-     * @return
+     Passing a function as an argument to a function
+     @param s
+     @param fn
+     @return
      */
     static String passFunctionAsArgument(String s, Function<String, String> fn) {
         return fn.apply(s);
     }
 
     /**
-     * 1.1.2 & 1.2.2 First-class function and Higher order function - A function that returns a function
-     * @return
+     1.1.2 & 1.2.2 First-class function and Higher order function - A function that returns a function
+     @return
      */
     static IntFunction<String> returnFunctionFromFunction() { 
         // 1.1.2 & 1.2.2 Return a function from a function
@@ -158,10 +158,10 @@ public class LambdasAndFunctionals {
     }
 
     /**
-     * 1.3. Pure function - It should be deterministic, means it depends only on function arguments and 
-     *  no side-effects - should not change local or global state i.e. immutable.
-     * @param nums
-     * @return
+     1.3. Pure function - It should be deterministic, means it depends only on function arguments and 
+      no side-effects - should not change local or global state i.e. immutable.
+     @param nums
+     @return
      */
     static Integer pureFunction(final List<Integer> nums) {
         return nums.stream() // this is a aggregate operation so, no change to original collection
@@ -169,25 +169,25 @@ public class LambdasAndFunctionals {
     }
 
     /**
-     * 2.4 Recursion
-     * Head call Recursion - Making the recursive call before calculating the result 
-     * at each step or in words at the head of the calculation.
-     * A drawback of this type of recursion is that every step has to hold the state of 
-     * all previous steps until we reach the base case. This is not really a problem for 
-     * small numbers, but holding the state for large numbers can be inefficient.
-     * @param n
-     * @return
+     2.4 Recursion
+     Head call Recursion - Making the recursive call before calculating the result 
+     at each step or in words at the head of the calculation.
+     A drawback of this type of recursion is that every step has to hold the state of 
+     all previous steps until we reach the base case. This is not really a problem for 
+     small numbers, but holding the state for large numbers can be inefficient.
+     @param n
+     @return
      */
     private static Integer factorialWithHeadRecursion(Integer n) {
         return (n == 1) ? 1 : n * factorialWithHeadRecursion(n - 1);
     }
 
     /**
-     * 2.4 Recursion
-     * Tail call Recursion - we ensure that the recursive call is the last call a function makes.
-     * @param n
-     * @param result
-     * @return
+     2.4 Recursion
+     Tail call Recursion - we ensure that the recursive call is the last call a function makes.
+     @param n
+     @param result
+     @return
      */
     private static Integer factorialWithTailRecursion(Integer n, Integer result) {
         return (n == 1) ? result : factorialWithTailRecursion(n - 1, result * n);
@@ -235,16 +235,16 @@ class Monad {
 }
 
 /**
- * 2.2 Monads
- * 
- * Monad three laws:
- * Left Identity:  When applying to a monad, it should yield the same outcome as applying 
- *                 the transformation to the held value.
- * 
- * Right Identity: When sending a monad transformation (convert the value to a monad), the 
- *                 yield outcome must be the same as wrapping the value in a new monad.
- * 
- * Associativy:    When chaining transformations, it should not matter how transformations are nested.
+ 2.2 Monads
+ 
+ Monad three laws:
+ Left Identity:  When applying to a monad, it should yield the same outcome as applying 
+                 the transformation to the held value.
+ 
+ Right Identity: When sending a monad transformation (convert the value to a monad), the 
+                 yield outcome must be the same as wrapping the value in a new monad.
+ 
+ Associativy:    When chaining transformations, it should not matter how transformations are nested.
  */
 class MonadLaws {
 

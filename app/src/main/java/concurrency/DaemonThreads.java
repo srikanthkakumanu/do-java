@@ -3,8 +3,8 @@ package concurrency;
 import java.math.BigInteger;
 
 /**
- * Daemon thread purpose is that background tasks should not block our application
- * i.e. main method thread from terminating.
+ Daemon thread purpose is that background tasks should not block our application
+ i.e. main method thread from terminating.
  */
 public class DaemonThreads {
     public static void main(String[] args) throws InterruptedException {

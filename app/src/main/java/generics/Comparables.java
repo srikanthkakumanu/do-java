@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.Comparator;
 
 /**
- * Different examples for Comparable<T> and Comparator<T> for comparision strategy.
+ Different examples for Comparable<T> and Comparator<T> for comparision strategy.
  */
 public class Comparables {
     public static void main(String[] args) {

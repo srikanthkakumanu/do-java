@@ -5,8 +5,8 @@ import lombok.Data;
 import java.util.Optional;
 
 /**
- * Optional is highly recommended to be used as return types only.
- * Optional has many variations such as OptionalLong, OptionalInt, OptionalDouble.
+ Optional is highly recommended to be used as return types only.
+ Optional has many variations such as OptionalLong, OptionalInt, OptionalDouble.
  */
 public class Optionals {
     public static void main(String[] args) {
@@ -59,9 +59,9 @@ public class Optionals {
         return Optional.empty();
     }
     /**
-     * Mimiking the valid output coming from DB
-     * @param name
-     * @return
+     Mimiking the valid output coming from DB
+     @param name
+     @return
      */
     private static Dog findByName(String name) {
         Dog dog = new Dog(name, 3);
@@ -69,9 +69,9 @@ public class Optionals {
     }
 
     /**
-     * Mimiking that no valid result found coming from DB
-     * @param name
-     * @return
+     Mimiking that no valid result found coming from DB
+     @param name
+     @return
      */
     private static Optional<Dog> findByNameWithOptional(String name) {
         Dog dog = null;

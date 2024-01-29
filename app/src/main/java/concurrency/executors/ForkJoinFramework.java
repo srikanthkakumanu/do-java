@@ -11,12 +11,12 @@ import java.util.Arrays;
 import java.util.Collection;
 
 /**
- * There are two approaches to submit tasks to fork/join thread pool.
- * 1. via submit() or execute(): Need to explicitly join after submit or execute.
- *          forkJoinPool.execute(customRecursiveTask);
- *          int result = customRecursiveTask.join();
- * 2. via invoke(): It forks the task wait for the result, does not need any manual joining.
- *          int result = forkJoinPool.invoke(customRecursiveTask); 
+ There are two approaches to submit tasks to fork/join thread pool.
+ 1. via submit() or execute(): Need to explicitly join after submit or execute.
+          forkJoinPool.execute(customRecursiveTask);
+          int result = customRecursiveTask.join();
+ 2. via invoke(): It forks the task wait for the result, does not need any manual joining.
+          int result = forkJoinPool.invoke(customRecursiveTask); 
  */
 public class ForkJoinFramework {
 

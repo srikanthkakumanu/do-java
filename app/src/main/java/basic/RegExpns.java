@@ -4,26 +4,26 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Regular expressions
- * -------------------
- * A regular expression comprises normal characters, character classes (sets of characters),
- * wildcard characters, and quantifiers.
+ Regular expressions
+ -------------------
+ A regular expression comprises normal characters, character classes (sets of characters),
+ wildcard characters, and quantifiers.
  *
- * pattern matching or string matching
- * -----------------------------------
- * [abc] = a,b or c
- * [^abc] = inverted - any character except a,b,c
- * [a-z] = A set of characters - any character between a to z
- * [A-Z] = A set of characters - any character between A to Z
- * [a-z,A-Z] = a to z, A to Z
- * [0-9] = 0 to 9
+ pattern matching or string matching
+ -----------------------------------
+ [abc] = a,b or c
+ [^abc] = inverted - any character except a,b,c
+ [a-z] = A set of characters - any character between a to z
+ [A-Z] = A set of characters - any character between A to Z
+ [a-z,A-Z] = a to z, A to Z
+ [0-9] = 0 to 9
  *
- * quantifiers
- * -----------
- * A quantifier determine how many times an expression is matched.
- * + = Match one or more.
- * * = Match zero or more.
- * ? = Match zero or one.
+ quantifiers
+ -----------
+ A quantifier determine how many times an expression is matched.
+ + = Match one or more.
+ = Match zero or more.
+ ? = Match zero or one.
  */
 public class RegExpns {
     public static void main(String[] args) {

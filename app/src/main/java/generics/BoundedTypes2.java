@@ -15,7 +15,7 @@ public class BoundedTypes2<T extends Number> {
     public void set(T t) {
         this.t = t;
     }
-    // ** with bounded types, we can use the extended type methods in our code like below.
+    // *with bounded types, we can use the extended type methods in our code like below.
     public boolean isEven() { return t.intValue() % 2 == 0; }
 
     public <U extends Number> void inspect(U u) {

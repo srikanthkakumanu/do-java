@@ -6,13 +6,13 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
 
 /**
- * Memorization is a form caching that accelerates the performance
- * of repetitive recursive operations. In FP, it can be implemented
- * as a generic wrapper for any pure function.
- * <p>
- * Memoization is a technique used in FP to speed up computer programs
- * by eliminating the repetitive computation of results, and by avoiding
- * repeated calls to functions that process the same input.
+ Memorization is a form caching that accelerates the performance
+ of repetitive recursive operations. In FP, it can be implemented
+ as a generic wrapper for any pure function.
+ <p>
+ Memoization is a technique used in FP to speed up computer programs
+ by eliminating the repetitive computation of results, and by avoiding
+ repeated calls to functions that process the same input.
  */
 public class Memorization {
     Map<String, Object> cache = HashMap.newHashMap(5);

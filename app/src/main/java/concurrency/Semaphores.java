@@ -7,9 +7,9 @@ import java.util.stream.IntStream;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Semaphores are two types:
- * - Counting Semaphores - Below LoginQueue solution demonstrates it.
- * - Binary Semaphores   - Mutex (Mutual Exclusion) acts similar to Binary semaphore.
+ Semaphores are two types:
+ - Counting Semaphores - Below LoginQueue solution demonstrates it.
+ - Binary Semaphores   - Mutex (Mutual Exclusion) acts similar to Binary semaphore.
  */
 public class Semaphores {
     public static void main(String[] args) throws InterruptedException {
@@ -30,8 +30,8 @@ public class Semaphores {
     }
 
     /**
-     * When all threads try to access the counter at once, they will be blocked in a queue.
-     * @throws InterruptedException
+     When all threads try to access the counter at once, they will be blocked in a queue.
+     @throws InterruptedException
      */
     public void whenMutexAndMultipleThreads_thenBlocked() throws InterruptedException {
         int count = 5;
@@ -47,8 +47,8 @@ public class Semaphores {
     }
 
     /**
-     * When we wait, all threads will access the counter and no threads left in the queue.
-     * @throws InterruptedException
+     When we wait, all threads will access the counter and no threads left in the queue.
+     @throws InterruptedException
      */
     public void givenMutexAndMultipleThreads_ThenDelay_thenCorrectCount() throws InterruptedException {
         int count = 5;

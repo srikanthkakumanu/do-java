@@ -3,7 +3,7 @@ package basic;
 import java.util.Random;
 
 /**
- * Generate random Gaussian values.
+ Generate random Gaussian values.
  */
 public class Randoms {
     public static void main(String[] args) {

@@ -15,9 +15,9 @@ public class TheCountDownLatch {
     }
 
     /**
-     * This below example blocks parent thread (Main thread) until some child
-     * threads finishes.
-     * @throws InterruptedException
+     This below example blocks parent thread (Main thread) until some child
+     threads finishes.
+     @throws InterruptedException
      */
     private void blockParentThreadUntilComplete() throws InterruptedException {
         // Given
@@ -35,12 +35,12 @@ public class TheCountDownLatch {
     }
 
     /**
-     * This below example (contrary to blockParentThreadUntilComplete() metod),
-     * blocks each child thread until all other threads have started and then
-     * blocks until the workers have finished.
-     * Very useful to test parallalism.
-     * 
-     * @throws InterruptedException
+     This below example (contrary to blockParentThreadUntilComplete() metod),
+     blocks each child thread until all other threads have started and then
+     blocks until the workers have finished.
+     Very useful to test parallalism.
+     
+     @throws InterruptedException
      */
     private void blockEachChildUntilAllOtherThreadsStart() throws InterruptedException {
         List<String> scraper = Collections.synchronizedList(new ArrayList<>());

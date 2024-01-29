@@ -3,31 +3,31 @@ package basic;
 import java.util.Arrays;
 
 /**
- * In Java 14, an improved version of instanceof is introduced i.e. Pattern matching
- * as an experimental feature and became permanent feature from Java 16.
- * <p>
- * Traditional instanceof approach:
- * 1. For each conditional block, we are testing the animal parameter
- *      to determine its type, convert it via a cast and declaring a
- *      local variable. Then we can perform operations specific to
- *      that particular animal.
- * 2. Drawbacks:
- *  - need to test the type and make a cast for every conditional block
- *  - repeat the type name three times for every if block.
- *  - Readability is poor
- *  - problem magnifies each time we add a new animal.
- * <p>
- * Pattern Matching for instanceof:
- * 1. It is a mechanism that determines if a value fits a general form. Pattern
- *      matching is used to test the type of value. A type must be a reference type.
- * <p>
- * 2. This kind of pattern is called a type pattern. If the pattern matches,
- *      a pattern variable will receive a reference to the object matched by
- *      the pattern.
- * <p>
- * 3. If instanceof succeeds, pattern variable will be created and contain a reference
- *      to the object that matches the pattern. If it fails, pattern variable
- *      is never created.
+ In Java 14, an improved version of instanceof is introduced i.e. Pattern matching
+ as an experimental feature and became permanent feature from Java 16.
+ <p>
+ Traditional instanceof approach:
+ 1. For each conditional block, we are testing the animal parameter
+      to determine its type, convert it via a cast and declaring a
+      local variable. Then we can perform operations specific to
+      that particular animal.
+ 2. Drawbacks:
+  - need to test the type and make a cast for every conditional block
+  - repeat the type name three times for every if block.
+  - Readability is poor
+  - problem magnifies each time we add a new animal.
+ <p>
+ Pattern Matching for instanceof:
+ 1. It is a mechanism that determines if a value fits a general form. Pattern
+      matching is used to test the type of value. A type must be a reference type.
+ <p>
+ 2. This kind of pattern is called a type pattern. If the pattern matches,
+      a pattern variable will receive a reference to the object matched by
+      the pattern.
+ <p>
+ 3. If instanceof succeeds, pattern variable will be created and contain a reference
+      to the object that matches the pattern. If it fails, pattern variable
+      is never created.
  */
 public class PatternMatchInstanceOf {
     public static void main(String[] args) {

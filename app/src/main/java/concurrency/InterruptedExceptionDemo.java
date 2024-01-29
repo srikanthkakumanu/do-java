@@ -3,15 +3,15 @@ package concurrency;
 import java.math.BigInteger;
 
 /**
- * Interrupting a thread via interrupt() method always throw an InterruptedException
- * and execution is interrupted as main thread will terminate the execution. If there
- * are any other threads are in midst of execution, such threads execution should be 
- * handled in graceful manner as shown below. 
- * 
- * To avoid such situation of handling other threads execution in graceful manner and
- * not to cause a blocker for main thread to complete the execution,daemon threds are 
- * the solution even after main threads execution is complete.
- * 
+ Interrupting a thread via interrupt() method always throw an InterruptedException
+ and execution is interrupted as main thread will terminate the execution. If there
+ are any other threads are in midst of execution, such threads execution should be 
+ handled in graceful manner as shown below. 
+ 
+ To avoid such situation of handling other threads execution in graceful manner and
+ not to cause a blocker for main thread to complete the execution,daemon threds are 
+ the solution even after main threads execution is complete.
+ 
  */
 public class InterruptedExceptionDemo {
     public static void main(String[] args) {

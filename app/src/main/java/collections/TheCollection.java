@@ -11,7 +11,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 /**
- * Basic example of all Collection<E> methods usage by using a ArrayList concrete implementation.
+ Basic example of all Collection<E> methods usage by using a ArrayList concrete implementation.
  */
 public class TheCollection {
     public static void main(String[] args) {
@@ -23,9 +23,9 @@ public class TheCollection {
     }
 
     /**
-     * Examples of all standard/old methods of collection which
-     * modify the original collection when used.
-     * Note: Aggregate methods does not change the original collection.
+     Examples of all standard/old methods of collection which
+     modify the original collection when used.
+     Note: Aggregate methods does not change the original collection.
      */
     private static void bulk() {
         Collection<Integer> c = new ArrayList<>(List.of(2, 23, 43, 22, 43));
@@ -108,7 +108,7 @@ public class TheCollection {
         
     }
     /**
-     * Examples of all standard aggregate methods that collection provides.
+     Examples of all standard aggregate methods that collection provides.
      */
     private static void aggregate() {
 

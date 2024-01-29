@@ -57,8 +57,8 @@ class SimpleReentrantReadWriteLock {
         }
     }
     /**
-     * This method demonstrates downgrading the lock from write to read. 
-     * But read to write upgradation is not possible and not recommended.
+     This method demonstrates downgrading the lock from write to read. 
+     But read to write upgradation is not possible and not recommended.
      */
     public long incrementAndGet() {
         long value = 0;

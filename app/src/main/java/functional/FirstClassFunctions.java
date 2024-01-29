@@ -21,17 +21,17 @@ public class FirstClassFunctions {
     }
 
     /**
-     * Passing functions as method argument
-     * @return
+     Passing functions as method argument
+     @return
      */
     Integer apply(Integer input, UnaryOperator<Integer> operation) {
         return operation.apply(input);
     }
 
     /**
-     * First-class function as return value
-     * @param multiplier
-     * @return
+     First-class function as return value
+     @param multiplier
+     @return
      */
     public UnaryOperator<Integer> multiplyWith(Integer multiplier) {
         return x -> multiplier * x;

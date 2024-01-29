@@ -62,8 +62,8 @@ class Counter {
     }
 
     /**
-     * Optimistic Read
-     * @return
+     Optimistic Read
+     @return
      */
     public long getOptimistic() throws InterruptedException {
         long stamp = slock.tryOptimisticRead();

@@ -140,7 +140,7 @@ There are three important Lock implementations, which are:
 <H4><B>2.6 CyclicBarrier</B></H4>
 
 - A CyclicBarrier is used when n a set of **two or more threads must wait at a predetermined execution point until all threads in the set have reached that point**.
-  - **_numThreads_** specifies the number of threads that must reach the barrier before execution continues.
+  - **_numThreads_*specifies the number of threads that must reach the barrier before execution continues.
 - A CyclicBarrier is a synchronizer that allows a set of threads to **wait for each other to reach a common execution point**.
 - <B>That execution point is called barrier. That barrier is called cyclic because it can be re-used after the waiting threads are released.</B>
 - A CyclicBarrier is a reusable construct where a group of threads waits together until all the threads arrive at a common point.
@@ -184,7 +184,7 @@ Executor Framework has the following executor interfaces, implementations and ut
 
 <H4><B>3.1.1 How to choose Ideal num. of Threads</B><H4>
 
-- <B>No. of CPUs any computer has.</B> If one CPU has two cores, then we should consider it as 2 CPUs. At most a CPU will run only one thread at a time. That means for one CPU with 2 cores, It can run two threads at time. There are some CPUs as hardware specification can run more than one thread. For example, one CPU with 4 core and each core can run 2 threads at a time. That means 4 * 2 * 2 = 16 threads we can run. 
+- <B>No. of CPUs any computer has.</B> If one CPU has two cores, then we should consider it as 2 CPUs. At most a CPU will run only one thread at a time. That means for one CPU with 2 cores, It can run two threads at time. There are some CPUs as hardware specification can run more than one thread. For example, one CPU with 4 core and each core can run 2 threads at a time. That means 4 2 2 = 16 threads we can run. 
 
 - <B>Type of task a thread performs </B>such as I/O operation, network operation etc.
 - <B>Desired fairness between threads</B>.

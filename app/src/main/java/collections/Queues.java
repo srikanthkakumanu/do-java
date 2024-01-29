@@ -4,10 +4,10 @@ import java.util.Queue;
 import java.util.ArrayDeque;
 
 /**
- * Queue provides two sets of methods.
- * 1. Which throws exception - add(), remove(), element()
- * 2. Returns a special value - offer(), poll(), peek()
- * 
+ Queue provides two sets of methods.
+ 1. Which throws exception - add(), remove(), element()
+ 2. Returns a special value - offer(), poll(), peek()
+ 
  */
 public class Queues {
     public static void main(String[] args) {

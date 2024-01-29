@@ -3,8 +3,8 @@ package basic;
 import java.util.StringJoiner;
 
 /**
- * StringBuilder is NOT synchronized and StringBuffer is synchronized.
- * But StringBuilder offers better performance compared to StringBuffer.
+ StringBuilder is NOT synchronized and StringBuffer is synchronized.
+ But StringBuilder offers better performance compared to StringBuffer.
  */
 public class StringJoin {
     public static void main(String[] args) {

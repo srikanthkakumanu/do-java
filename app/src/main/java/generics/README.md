@@ -2,7 +2,7 @@
 
 **What is a Generic?**
 
-Generics introduced in J2SE 5. It allows a type (classes and interfaces) or method to operate on objects of various types while providing compile-time type safety. **Generics means Parameterized Types** and supports **Parameterized Polymorphism**.
+Generics introduced in J2SE 5. It allows a type (classes and interfaces) or method to operate on objects of various types while providing compile-time type safety. **Generics means Parameterized Types*and supports **Parameterized Polymorphism**.
 
 **Why Generics?**
 
@@ -23,7 +23,7 @@ Generics introduced in J2SE 5. It allows a type (classes and interfaces) or meth
 - Enables the implementation of generic classes and  algorithms.
 
 
-**Standard Generic conventions** (Not rules)
+**Standard Generic conventions*(Not rules)
 
 - E = Element (used in Collections framework)
 - K = Key
@@ -35,7 +35,7 @@ Generics introduced in J2SE 5. It allows a type (classes and interfaces) or meth
 **Raw Types**
 
 - A <I>**raw type**</I> is the name of a class or interface without any type arguments **when we use a generic type (class or interface)**.
-- **Note:-** A non-generic class or interface type is not a <I>**raw type**</I>.
+- **Note:-*A non-generic class or interface type is not a <I>**raw type**</I>.
 - For backward compatibility, assigning a parameterized type to a <I>**raw type**</I> is allowed.
 
     Ex:- </br>
@@ -74,7 +74,7 @@ Ex:- </br>`public <T,G> List<T> arrayToList(<T> a, Function<T, G> mapper)`
 
 **Bounded Types**
 
-- In general, generic type parameter can accept any type (except primitive data types). However, if we wish to  restrict the generic type parameter to accept only specific types then we can use **Bounded Types** with the use <I>**extends**</I> keyword.
+- In general, generic type parameter can accept any type (except primitive data types). However, if we wish to  restrict the generic type parameter to accept only specific types then we can use **Bounded Types*with the use <I>**extends**</I> keyword.
 - Bounded type parameters are useful when you want to restrict the types that can be used as type arguments in a parameterized type.
 - When we use <I>**extends**</I> keyword in Generics context, it extends a class (if the restricted type is a class) and implements an interface (if the restricted type is an interface).It means we can use that super class/interface methods within bounded type class. Ex:- `t.intValue();`
 - A type parameter can have <I>multiple bounds</I> (Ex:-`<T extends B1 & B2 & B3>`).

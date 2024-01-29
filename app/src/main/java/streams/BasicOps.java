@@ -26,16 +26,16 @@ public class BasicOps {
     }
 
     /**
-     * Basic stream operations such as:
-     * count
-     * of
-     * parallel stream
-     * distinct
-     * filter
-     * Atomic operation (concurrency)
-     * map
-     * collect
-     * reduce
+     Basic stream operations such as:
+     count
+     of
+     parallel stream
+     distinct
+     filter
+     Atomic operation (concurrency)
+     map
+     collect
+     reduce
      */
     private static void aggregateOps() {
         String[] ar = new String[] {"a", "b", "c", "d", "e", "a", "b", "c", "d", "e"};
@@ -150,10 +150,10 @@ public class BasicOps {
         System.out.println(nums.stream().map(v -> v + 2).reduce(1, (a, b) -> a + b));
         
         /*
-         * reduce() can have three params: 
-         * - identity = initial value for an accumulator
-         * - accumulator = A function to aggregate elements
-         * - combiner = A function to aggregate results of accumulator
+         reduce() can have three params: 
+         - identity = initial value for an accumulator
+         - accumulator = A function to aggregate elements
+         - combiner = A function to aggregate results of accumulator
          */
         OptionalInt optInt = IntStream
                                 .rangeClosed(1, 5)

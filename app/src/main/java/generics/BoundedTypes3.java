@@ -1,9 +1,9 @@
 package generics;
 
 /**
- * A type variable with multiple bounds is a subtype of all the types listed in the bound. 
- * If one of the bounds is a class, it must be specified first. 
- * Otherwise, we get a compile-time error. As per below, A must be specified first.
+ A type variable with multiple bounds is a subtype of all the types listed in the bound. 
+ If one of the bounds is a class, it must be specified first. 
+ Otherwise, we get a compile-time error. As per below, A must be specified first.
  */
  
 class A {}
@@ -11,7 +11,7 @@ interface B {}
 interface C {}
 
 // The below usage will throw a compile-time error
-// class D <T extends B & A & C> { /* ... */ }
+// class D <T extends B & A & C> { /... */ }
 
 public class BoundedTypes3<T extends A & B & C> {
     private T t;

@@ -11,8 +11,8 @@ import java.util.function.UnaryOperator;
 import java.util.function.BinaryOperator;
 
 /**
- * There are four fundamental functional interfaces in Java 8.
- * Consumer, Supplier, Function, Predicate
+ There are four fundamental functional interfaces in Java 8.
+ Consumer, Supplier, Function, Predicate
  */
 public class FunctionalInterfaces {
     public static void main(String[] args) {
@@ -42,7 +42,7 @@ public class FunctionalInterfaces {
     }
 
     /**
-     * Demonstrates the examples of Predicate functional interface.
+     Demonstrates the examples of Predicate functional interface.
      */
     private static void predicate() {
         System.out.println("Predicate Functional Interface examples Executed..");
@@ -51,7 +51,7 @@ public class FunctionalInterfaces {
     }
 
     /**
-     * Demonstrates the examples of Function functional interface.
+     Demonstrates the examples of Function functional interface.
      */
     private static void function() {
         System.out.println("Function Functional Interface Examples Executed..");
@@ -60,7 +60,7 @@ public class FunctionalInterfaces {
     }
 
     /**
-     * Demonstrates the examples of Supplier functional interface.
+     Demonstrates the examples of Supplier functional interface.
      */
     private static void supplier() {
         System.out.println("Supplier Functional Interface Examples Executed..");
@@ -72,7 +72,7 @@ public class FunctionalInterfaces {
     }
 
     /**
-     * Demonstrates the examples of Consumer functional interface.
+     Demonstrates the examples of Consumer functional interface.
      */
     private static void consumer() {
         System.out.println("Consumer Functional Interface Examples Executed..");

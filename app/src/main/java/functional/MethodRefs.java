@@ -9,22 +9,22 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
- * Method references (:: operator) are special type of lambda expressions. They are often used to 
- * create a simple lambda expressions by referencing existing methods.
- * There are four types of method references.
- * 1. static methods
- * 2. Bounded non-static method references:
- *      If you want to refer to a non-static method of an already existing object,
- *      you need bounded non-static method reference. Bounded non-static method
- *      references are a great way to use already existing methods on variables,
- *      the current instance (this::) or superclass (super::). The lambda arguments are passed
- *      as the method arguments to the reference method of that specific object.
- *      You don't need an intermediate variable, you can combine the return value
- *      of another method call or field access directly with the :: operator.
- * 3. Unbounded non-static method references:
- *      Unbound non-static method reference not bound to a specific object, but they
- *      refer to an instance method of a type.
- * 4. Constructor
+ Method references (:: operator) are special type of lambda expressions. They are often used to 
+ create a simple lambda expressions by referencing existing methods.
+ There are four types of method references.
+ 1. static methods
+ 2. Bounded non-static method references:
+      If you want to refer to a non-static method of an already existing object,
+      you need bounded non-static method reference. Bounded non-static method
+      references are a great way to use already existing methods on variables,
+      the current instance (this::) or superclass (super::). The lambda arguments are passed
+      as the method arguments to the reference method of that specific object.
+      You don't need an intermediate variable, you can combine the return value
+      of another method call or field access directly with the :: operator.
+ 3. Unbounded non-static method references:
+      Unbound non-static method reference not bound to a specific object, but they
+      refer to an instance method of a type.
+ 4. Constructor
  */
 
  public class MethodRefs {

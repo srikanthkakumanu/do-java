@@ -27,7 +27,7 @@ public class SimpleExecutorService {
     }
 
     /**
-     * Fixed thread pool example which has core pool and max pool size as 3 only.
+     Fixed thread pool example which has core pool and max pool size as 3 only.
      */
     private static void simpleExecutorSubmit() {
         ExecutorService service = Executors.newFixedThreadPool(2);
@@ -38,8 +38,8 @@ public class SimpleExecutorService {
     }
 
     /**
-     * Fixed thread pool example which has different values for core and max pool sizes
-     * and blocking queue.
+     Fixed thread pool example which has different values for core and max pool sizes
+     and blocking queue.
      */
     private static void executorServiceSubmitWithCustomThreadPool() {
         int corePoolSize = 10;
@@ -60,7 +60,7 @@ public class SimpleExecutorService {
     }
 
     /**
-     * 
+     
      */
     private static void runnableSubmit() {
         
@@ -95,10 +95,10 @@ public class SimpleExecutorService {
         service.shutdown();
 
     }
-    /** 
-     * invokeAny() - makes a call any one of the callables in the given list
-     * and once one of these callables fully executed, any other waiting
-     * tasks will be cancelled.
+    /*
+     invokeAny() - makes a call any one of the callables in the given list
+     and once one of these callables fully executed, any other waiting
+     tasks will be cancelled.
     */
     private static void callableInvokeAny() {
         ExecutorService service = Executors.newFixedThreadPool(1);
@@ -114,8 +114,8 @@ public class SimpleExecutorService {
         finally { service.shutdown(); }
     }
 
-        /** 
-     * invokeAll - makes a call to all of the tasks.
+        /*
+     invokeAll - makes a call to all of the tasks.
     */
     private static void callableInvokeAll() {
         ExecutorService service = Executors.newFixedThreadPool(1);

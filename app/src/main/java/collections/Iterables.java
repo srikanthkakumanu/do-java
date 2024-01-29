@@ -10,10 +10,10 @@ import java.util.Spliterator;
 import java.util.Objects;
 
 /**
- * There are 3 ways to iterate over a collection.
- * 1. via enhanced for-each construct
- * 2. via Iterator
- * 3. via Iterable
+ There are 3 ways to iterate over a collection.
+ 1. via enhanced for-each construct
+ 2. via Iterator
+ 3. via Iterable
  */
 public class Iterables {
     public static void main(String[] args) {
@@ -33,8 +33,8 @@ public class Iterables {
     }
 
     /**
-     * Demonstrates different ways to iterate the elements by using standard iterator
-     * from a collection.
+     Demonstrates different ways to iterate the elements by using standard iterator
+     from a collection.
      */
     private static void iterate() {
         System.out.println("Iterating the elements in different ways..");
@@ -60,9 +60,9 @@ public class Iterables {
 
     }
 
-    /** 
-     * Demonstrate iteration using ListIterator
-     * 
+    /*
+     Demonstrate iteration using ListIterator
+     
      */
     private static void listIterate() {
         System.out.println("Iterating a list using ListIterator...");
@@ -116,11 +116,11 @@ public class Iterables {
     }
 
     /**
-     * Note: use standard Iterator when we need to:
-     * 1. Iterate multiple collections in parallel.
-     * 2. Remove the current element - because standard for or for-each is
-     *      not usable for filtering.
-     * Below example iterates multiple collections in parallel.
+     Note: use standard Iterator when we need to:
+     1. Iterate multiple collections in parallel.
+     2. Remove the current element - because standard for or for-each is
+          not usable for filtering.
+     Below example iterates multiple collections in parallel.
      */
     private static void iterateMultipleCollections() {
         System.out.println("Iterating over multiple collections in parallel");
