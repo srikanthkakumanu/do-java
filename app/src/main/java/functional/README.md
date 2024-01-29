@@ -103,9 +103,9 @@ There are some key principles for functional programming:
 
 - **A first-class function is a function treated as first-class citizens**, i.e. treated like any other variable.
 - A first-class function can be:
-  - **Functions as an argument*- passed as an argument to another function. It can also be called as higher-order function.
-  - **Function return functions*- can be returned as a result of a function. It can also be called as higher-order function.
-  - **Functions as values*- assigned to a regular variable. It can also be stored as an array, object, map etc.
+  - **Functions as an argument** - passed as an argument to another function. It can also be called as higher-order function.
+  - **Function return functions** - can be returned as a result of a function. It can also be called as higher-order function.
+  - **Functions as values** - assigned to a regular variable. It can also be stored as an array, object, map etc.
 - A **higher-order function*is only possible because of first-class functions. It can either a function that receives another function as an argument or a function that returns a new function.
 
 ## Pure functions and Referential transparency
@@ -161,9 +161,9 @@ There are **three different immutable parts*available in JDK.
 
 - Strings in Java
 - Immutable collections
-  - **Unmodifiable collections*— Creates an unmodifiable view by using `Collections.unmodifiableXXX()` methods.
-  - **Immutable Collection factory methods (Java 9+)*— Create an immutable collection by using `of(...)` methods ex: `List.of()`.
-  - **Immutable copies (Java 10+)*— Provides deeper level of immutability by using `copyOf()` static method.
+  - **Unmodifiable collections** — Creates an unmodifiable view by using `Collections.unmodifiableXXX()` methods.
+  - **Immutable Collection factory methods (Java 9+)** — Create an immutable collection by using `of(...)` methods ex: `List.of()`.
+  - **Immutable copies (Java 10+)** — Provides deeper level of immutability by using `copyOf()` static method.
 - Primitives and Primitive wrappers
 
 ### **Strings In Java*
@@ -177,7 +177,7 @@ String concatenation (Using +) is now optimized from Java 9 onwards.
 Each time a string is concatenated or modified, a new object is allocated at heap level.
 It uses **`invokedynamic`*(**aka Indy**) rather than the `StringBuilder`. 
 
-**String constant pooling for String Literals*<BR>
+**String constant pooling for String Literals**<BR>
 
 When we create a String object using the new() operator, it always creates a new object in heap memory. On the other hand, if we create an object using String literal syntax e.g. “Baeldung”, it may return an existing object from the String pool, if it already exists. Otherwise, it will create a new String object and put in the string pool for future re-use.
 Identical string literals are stored only once in a special memory region
@@ -290,18 +290,18 @@ That's exactly what a closure is: **It is a bucket of references to variables a 
 
 ## **Advantages of functional programming**
 
-**Simplicity*— Without mutable state and side effects, our functions tend to be smaller. <BR>
-**Consistency*— Immutable data structures are reliable and consistent.<BR>
-**Correctness (Mathematical)*— Simpler code with consistent data structures will automatically lead to “more correct” code with a smaller bug surface. The “purer” your code, the easier it will be to reason with, leading to simpler debugging and testing. <BR>
-**Modularity*— Small and independent functions lead to simpler usability and modularity. Combined with functional composition and partial application, you have powerful tools to build more complex tasks out of these smaller parts easily. <BR>
-**Testability*— Many of the functional concepts, like pure functions, referential transparency, immutability, and the separation of concerns make testing and verification easier. <BR>
+**Simplicity** — Without mutable state and side effects, our functions tend to be smaller. <BR>
+**Consistency** — Immutable data structures are reliable and consistent.<BR>
+**Correctness (Mathematical)** — Simpler code with consistent data structures will automatically lead to “more correct” code with a smaller bug surface. The “purer” your code, the easier it will be to reason with, leading to simpler debugging and testing. <BR>
+**Modularity** — Small and independent functions lead to simpler usability and modularity. Combined with functional composition and partial application, you have powerful tools to build more complex tasks out of these smaller parts easily. <BR>
+**Testability** — Many of the functional concepts, like pure functions, referential transparency, immutability, and the separation of concerns make testing and verification easier. <BR>
 
 ## **Disadvantages of functional programming**
 
-**Learning Curve*— The advanced mathematical terminology and concepts that functional programming is based on can be quite intimidating. Nevertheless, you’re confronted with new and often unfamiliar terms and concepts. <BR>
-**Dealing with state*— Handling state isn’t an easy task, regardless of the chosen paradigm. Even though FP’s immutable approach eliminates a lot of possible bug surfaces, it also makes it harder to mutate data structures if they actually need to change. <BR>
-**Performance implications*— Despite their many benefits, many functional techniques, like immutability or recursion, can suffer from the required overhead. That’s why many FP languages utilize a plethora of optimizations to mitigate, like specialized data structures that minimize copying, or compiler optimizations for techniques like recursion. <BR>
-**Optimal problem context*— Not all problem contexts are a good fit for a functional approach. Domains like high-performance computing, I/O heavy problems, or low-level systems and embedded controllers, where you need fine-grained control over things like data locality and explicit memory management, don’t mix well with functional programming. <BR>
+**Learning Curve** — The advanced mathematical terminology and concepts that functional programming is based on can be quite intimidating. Nevertheless, you’re confronted with new and often unfamiliar terms and concepts. <BR>
+**Dealing with state** — Handling state isn’t an easy task, regardless of the chosen paradigm. Even though FP’s immutable approach eliminates a lot of possible bug surfaces, it also makes it harder to mutate data structures if they actually need to change. <BR>
+**Performance implications** — Despite their many benefits, many functional techniques, like immutability or recursion, can suffer from the required overhead. That’s why many FP languages utilize a plethora of optimizations to mitigate, like specialized data structures that minimize copying, or compiler optimizations for techniques like recursion. <BR>
+**Optimal problem context** — Not all problem contexts are a good fit for a functional approach. Domains like high-performance computing, I/O heavy problems, or low-level systems and embedded controllers, where you need fine-grained control over things like data locality and explicit memory management, don’t mix well with functional programming. <BR>
 
 ## **Memorization**
 
