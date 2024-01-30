@@ -173,25 +173,143 @@ A quantifier determines how many times an expression is matched.
 
 ## **Records**
 
+### Tuple
 
-Record purpose is to carry just the data and no boilerplate code is required. It is commonly referred to as **an aggregate type**.
-Records are immutable data classes that require only the type and field names.
-No setXXX() are generated because all **records are immutable**. 
+_Data aggregation_ is the process of gathering data from multiple sources and assembling it in a format. 
+The most well known **data aggregation type is tuple**. 
+
+**Tuple** — Mathematically speaking, a **tuple is a finite-ordered sequence of elements**. 
+In programming, **a tuple is a data structure aggregating multiple values or objects**.<br> 
+
+There are two kinds of tuples: **Structural tuples and Nominal tuples.**<br>
+
+**Structural tuples** — rely on the order of the contained elements and are therefore accessible only via their indices.
+(Python supports it)<br>
+**Nominal tuples** — don't use an index to access their data but use component names.<br>
+
+### Records
+
+**Record is a plain data aggregator type, and the purpose is to carry just the data and no boilerplate code is required.**
+They are **immutable data classes** that require only the type and field names and no setXXX() are generated. 
 However, if a record holds a reference to some object, you can make a change to that object, but you cannot change to what object the
 reference in the record refers. Thus, in Java terms, **records are said to be shallowly immutable**.
 
-Once Record is declared - compiler generates the equals(), toString(), hashCode() methods, private and
-final fields, and a public canonical constructor (with fields defined at record declaration level).
+In short, **A record is a nominal tuple**. 
+Like nominal tuples, Records aggregate an ordered sequence of values and provide access via names instead of indices.
 
-1. By default, All record declarations **implicitly inherit from Record**. So, **no more extends are allowed as Java does not support multiple inheritance**.
+Once the Record is declared — compiler generates:
+- `equals()`, `toString()`, `hashCode()` methods.
+- private and final fields.
+- public canonical constructor (with fields defined at record declaration level).
+
+#### Records—Canonical, compact and custom constructors
+
+**Canonical Constructor** —
+A constructor identical to the Record's component's definition is automatically generated/available, 
+called the canonical constructor.<br>
+
+**Compact Canonical Constructor** — A compact form of canonical constructor declaration.
+- The constructor omits all the arguments, including the parentheses.
+- Field assignments are not allowed in the compact canonical constructor, but you can customize or normalize data before it’s assigned.
+- The components will be assigned to their respective fields automatically, no additional code required.
+**Note: We can define either a standard canonical or compact canonical constructor but not both in the same record.**<br>
+
+**Custom Constructors** — We can define several custom constructors by using standard form or in custom form but must start with an explicit invocation of the canonical constructor as its first statement.
+
+
+1. By default, All record declarations implicitly inherit from `java.lang.Record`. So, **it does not support multiple inheritance**.
 2. By default, all records create a canonical constructor with the arguments that are defined at declaration level. But we can override that canonical constructor.
-3. We can **override the default constructor with Compact constructor**. This is special to records only and useful to override constructors in more compact way.
-4. We can **define multiple constructors with different combinations of arguments**.
-5. Records **can implement interfaces**.
-6. By default, **All records are final hence it cannot be extended further**.
-7. Once declared, **all the record fields are immutable hence cannot be changed**. Hence, **they are thread-safe and thereby, no synchronization is required**.
-8. It allows **only static constants to be declared**. no instance level fields (non-static) are allowed. Any fields are needed, they should be declared as arguments at record declaration level.
-9. A record can be generic i.e. it supports generic just like any other types. However, **A constructor cannot be generic, and it cannot include a throws clause either at constructor or getter method level**.
+3. We can **override the default canonical constructor with Compact constructor as well**. This is special to records only and useful to override constructors in more compact way.
+4. We can override the default canonical constructor either by using a _standard canonical_ form or _compact canonical_ form but cannot define both in the same record.
+5. We can define custom constructors, i.e., **multiple constructors with different combinations of arguments**.
+6. Records **can implement interfaces**.
+7. By default, **All records are _final_ hence it cannot be extended further**.
+8. Once declared, **all the record fields are immutable hence cannot be changed**. Hence, **they are thread-safe and thereby, no synchronization is required**.
+9. It allows **only static constants to be declared**. no instance level fields (non-static) are allowed. Any fields are needed, they should be declared as arguments at record declaration level.
+10. A record also supports generics (it can be generic) i.e. it supports generic just like any other types. However, **A constructor cannot be generic, and it cannot include a _throws_ clause either at constructor or getter method level**.
+11. We can create a record in step-by-step fashion by using a _Builder design pattern_.
+12. Records are the best place to put validations and scrubbing logic. Throwing Exceptions is one way to go. Another option is to scrub the data and adjust component values with sensible alternatives to form a valid Record.
+13. Records **can be Serialized** by using `java.io.Serializable`.
+14. **RecordBuilder annotation** generates a flexible builder for any Record, and all you have to do is add a single annotation. Note: this is not part core JDK and Refer to https://github.com/randgalt/record-builder
+15. **Dynamic tuples (Local Records)** — **This feature is missing in Java**. Other programming languages usually use those as dynamic data aggregators without requiring an explicitly defined type. **Java Records are simple data aggregators and can be considered nominal tuples. But we can use Java records as localized on-the-fly data aggregators (Local Records are records that are defined within a method)**. Contextually localized Records simplify and formalize data processing and bundle functionality.
 
+
+Example: -
+
+```java
+import java.time.LocalDateTime;
+import java.util.Objects;
+
+public class Rough {
+    public static void main(String[] args) {
+        User u = new User("Bob", true);
+        System.out.println(User.hello(User.MR) + u.name());
+
+        Container<String> text = new Container<>("Hello, ", "this is a string container");
+        String content = text.content();
+    }
+
+    record User(String name, boolean active, LocalDateTime lastLogin) {
+
+        // We can define static constants
+        public static final String MR = "Mr. ";
+        public static final String MS = "Ms. ";
+
+        /**
+         * An Important Note:
+         * A constructor cannot be generic.
+         * It cannot include a "throws" clause either at constructor or getter method level.
+         */
+        /**
+         * A Canonical constructor - that is automatically generated, but
+         * we can override it to include additional code.
+         */
+//        public User(String name, boolean active, LocalDateTime lastLogin) {
+//            Objects.requireNonNull(name);
+//            Objects.requireNonNull(lastLogin);
+//            this.name = name;
+//            this.active = active;
+//            this.lastLogin = lastLogin;
+//        }
+        /**
+         * A compact canonical constructor - to avoid boiler plate code
+         */
+        public User {
+            Objects.requireNonNull(name);
+            Objects.requireNonNull(lastLogin);
+            name = name.toLowerCase();
+        }
+        /**
+         * A custom constructor but it must call default
+         * canonical constructor as a first statement.
+         */
+        public User(String name, boolean active) {
+            // It must call default canonical constructor as a first statement.
+            this(name, active, LocalDateTime.now());
+        }
+        /**
+         * We can define additional getter methods without compromising immutability
+         */
+        public String nameInUpperCase() { return name.toUpperCase(); }
+        /**
+         * We can define static getter methods without compromising immutability
+         */
+        public static String hello() {
+            return "Hello, ";
+        }
+
+        public static String hello(String connotation) {
+            return "Hello, " + connotation;
+        }
+    }
+
+    /**
+     * An Important Note:
+     * A constructor cannot be generic.
+     * It cannot include a "throws" clause either at constructor or getter method level.
+     */
+    record Container<T> (T content, String identifier) {}
+}
+```
 
 </div>

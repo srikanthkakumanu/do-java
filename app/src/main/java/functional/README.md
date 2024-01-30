@@ -305,14 +305,26 @@ That's exactly what a closure is: **It is a bucket of references to variables a 
 
 ## **Memorization**
 
-Memorization is a form caching that accelerates the performance of repetitive recursive operations. In FP, it can be implemented
+Memorization is a form of caching that accelerates the performance of repetitive recursive operations. In FP, it can be implemented
 as a generic wrapper for any pure function. 
 
 Memoization is a technique used in FP to speed up computer programs by eliminating the repetitive computation of results,
 and by avoiding repeated calls to functions that process the same input.
 
+## **Tuples**
 
+_Data aggregation_ is the process of gathering data from multiple sources and assembling it in a format.
+The most well known **data aggregation type is tuple**.
 
+**Tuple** — Mathematically speaking, a **tuple is a finite-ordered sequence of elements**.
+In programming, **a tuple is a data structure aggregating multiple values or objects**.<br>
+
+There are two kinds of tuples: **Structural tuples and Nominal tuples.**<br>
+
+**Structural tuples** — rely on the order of the contained elements and are therefore accessible only via their indices. (Python supports it)<br>
+**Nominal tuples** — don't use an index to access their data but use component names.
+
+In Java, **Record is a nominal tuple**.
 </div>
 
 

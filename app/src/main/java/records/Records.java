@@ -1,4 +1,4 @@
-package basic;
+package records;
 
 import java.util.Objects;
 
@@ -43,9 +43,9 @@ import java.util.Objects;
 final record Person(String id, String name, Integer age) {
 
     public static final String DEFAULT_ID = "000-000";
-    // But we cannot define any instance fields here. they should be declared at definition level only.
+    // But we cannot define any instance fields here. They should be declared at definition level only.
 
-    // 1. all records create a default constructor with parameters that are defined at declaration level.
+    // 1. all records create a default canonical constructor with parameters that are defined at declaration level.
     // We can override it if needed.
     // public Person(String id, String name, Integer age) {
     //     System.out.println("Person record constructor override.");
@@ -59,7 +59,7 @@ final record Person(String id, String name, Integer age) {
     //     this.id = id; this.name = name; this.age = age;
     // }
 
-    // 2. Compact constructor:- as defined below. This is only special feature for records.
+    // 2. Compact canonical constructor: - as defined below. This is only special feature for records.
     // This is useful instead of overriding the constructor as shown above.
     // public Person {
     //     System.out.println("Person record constructor overrided with \"Compact Constructor\".");
@@ -73,7 +73,7 @@ final record Person(String id, String name, Integer age) {
     //     // this.id = id; this.name = name; this.age = age;
     // }
 
-    // 3. We can define different types of constructors for record.
+    // 3. We can define different types of custom constructors for record.
     public Person(String name, Integer age) {
         this(DEFAULT_ID, name, age);
         System.out.println("Person record constructor with variation of arguments");
