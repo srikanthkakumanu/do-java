@@ -1,23 +1,14 @@
 package streams;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Stream;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import java.util.List;
-import java.util.LinkedList;
-import java.util.Set;
-import java.util.Collections;
-import java.util.Map;
-import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Collector;
-import java.util.OptionalInt;
 import java.util.stream.IntStream;
 
 public class BasicOps {
@@ -215,21 +206,68 @@ public class BasicOps {
                                                                         return first; 
                                                                 });
         LinkedList<Product> linkedListOfProducts = products.stream().collect(toLinkedList);                                                                                                        
-                                
+
+        // Another example
+        enum Genre { DYSTOPIAN, HORROR, SCIENCE_FICTION; }
+        record Book(String title, int year, Genre genre) {}
+
+        List<Book> bks = new ArrayList<> (
+                List.of (new Book("Dracula", 1897, Genre.HORROR),
+                        new Book("Brave New World", 1932, Genre.DYSTOPIAN),
+                        new Book("1984", 1949, Genre.DYSTOPIAN),
+                        new Book("Dune", 1965, Genre.SCIENCE_FICTION),
+                        new Book("Do Androids Dream of Electric Sheep", 1968, Genre.SCIENCE_FICTION),
+                        new Book("The Shining", 1977, Genre.HORROR),
+                        new Book("Neuromancer", 1984, Genre.SCIENCE_FICTION),
+                        new Book("The Handmaid's Tale", 1985, Genre.DYSTOPIAN)));
+
+        // Collections.sort(books, Comparator.comparing(Book::title));
+        bks.sort(Comparator.comparing(Book::title));
+
+        // traditional approach
+//        List<String> result = new ArrayList<>();
+//
+//        for(var book : books) {
+//            if(book.year() >= 1970)
+//                continue;
+//
+//            if(book.genre() != Genre.SCIENCE_FICTION)
+//                continue;
+//
+//            var title = book.title();
+//            result.add(title);
+//
+//            if(result.size() == 3) break;
+//        }
+//
+//        result.forEach(System.out::println);
+
+        // Functional approach
+        var result = bks.stream()
+                .filter(book -> book.year() >= 1970)
+                .filter(book -> book.genre() == Genre.SCIENCE_FICTION)
+                .map(Book::title)
+                .sorted()
+                .limit(3)
+                .toList();
+
+        result.forEach(System.out::println);
+
+    }
+
+    @Data
+    @AllArgsConstructor
+    static class Product {
+        private int price;
+        private String name;
+
+    }
+
+    @Data
+    @AllArgsConstructor
+    static class Book {
+        private String name, author;
+        private int yearPublished;
     }
 }
 
-@Data
-@AllArgsConstructor
-class Product {
-    private int price;
-    private String name;
-
-}
-
-@Data
-@AllArgsConstructor
-class Book { 
-    private String name, author;
-    private int yearPublished;
-}

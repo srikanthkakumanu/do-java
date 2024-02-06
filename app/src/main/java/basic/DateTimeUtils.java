@@ -1,11 +1,14 @@
 package basic;
 
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.StringJoiner;
 
 public class DateTimeUtils {
     public static void main(String[] args) {
+        System.out.println("\n-----Calendar and Gregorian Calendar----\n\n");
         String[] months = {"Jan", "Feb", "Mar", "Apr", "May",
                             "Jun", "Jul", "Aug", "Sep", "Oct",
                             "Nov", "Dec"};
@@ -37,5 +40,20 @@ public class DateTimeUtils {
                 gc.get(Calendar.MINUTE),
                 gc.get(Calendar.SECOND));
         System.out.println(gc.isLeapYear(gc.get(Calendar.YEAR)));
+
+        // Date Time API - Temporal Types
+        System.out.println("\n-----Date & Time API - Temporal Types----\n\n");
+        // TemporalQuery<Boolean> == Predicate<TemporalAccessor>
+        boolean isItTeaTime = LocalDateTime.now()
+                .query(temporal -> {
+                    var time = LocalTime.from(temporal);
+                    return time.getHour() >= 16;
+                });
+        // The utility class TemporalQueries provides predefined queries,
+        // to eliminate the need to create common queries yourself.
+        // TemporalQuery<LocalTime> == Function<TemporalAccessor, Localtime>
+        LocalTime time = LocalDateTime.now().query(LocalTime::from);
+
+        
     }
 }
