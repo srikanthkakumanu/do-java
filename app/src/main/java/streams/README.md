@@ -128,4 +128,18 @@ The name teeing originates from one of the most common pipe fittings the **T-fit
 The Stream’s elements **first pass through both downstream Collectors, 
 so a BiFunction can merge both results as the second step**.
 
+## **Parallel Streams**
+
+Parallel streams use the concept of **_recursive composition_**, means 
+they _**divide and conquer**_ the data source by splitting up elements 
+with underlying Spliterator to process chunks of elements in parallel.
+Each chunk is processed by a dedicated thread and may even be split up again, 
+recursively, until the Stream API is satisfied that the chunks and threads 
+are a good match for the available resources. These chunks of elements and 
+their operations are forked into multiple threads. Finally, the sub results of 
+the threads are joined again to derive a final result.
+
+Stream API uses the common `ForkJoinPool` internally to spin-off and manage new threads.
+
+
 </div>
