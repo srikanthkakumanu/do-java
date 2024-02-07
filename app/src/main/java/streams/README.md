@@ -13,6 +13,22 @@ Streams can be summed up as _**lazy sequential data pipelines**_.
 Such pipelines are a higher-level abstraction for traversing sequential data. 
 They are sequences of higher-order functions to process their elements in a fluent, expressive, and functional way.
 
+## **Concurrency Vs. Parallelism**
+
+**Concurrency is about dealing with a lot of things at once. Parallelism is about doing a lot of things at once.**
+Concurrency is structuring things in a way that might allow parallelism to actually execute them simultaneously.
+**But parallelism is not the goal of concurrency. The goal of concurrency is good structure and possibility to implement execution modes like parallelism.**
+
+**Concurrency** — **It is the general concept of multiple tasks running in overlapping time periods competing over the available resources.**
+A single CPU core interleaves them by scheduling and switching between tasks as it sees fit.
+Switching between tasks is relatively easy and fast.
+
+**Parallelism** — It is about simultaneous execution of interleaved tasks and not about managing them.
+If more than one CPU core is available, the tasks can run in parallel on different cores.
+
+To use data structures in concurrent environments, they have to be **thread-safe**, usually requiring coordination with locks, semaphores, etc., to work correctly and guarantee safe access to any shared state.
+Executing code in parallel usually lacks such coordination because it’s focused on the execution itself. This makes it safer, more natural, and easier to reason with.
+
 ## **Stream Advantages**
 
 Streams as a data processing approach and having **an internal iterator**,
