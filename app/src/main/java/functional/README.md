@@ -2,75 +2,84 @@
 
 # **Functional programming in Java**
 
-Key to the understanding Java's functional programming/implementation of Lambda expressions are two constructs: Lambda Expressions and Functional Interfaces.
+Key to the understanding Java's functional programming/implementation 
+of Lambda expressions are two constructs: **Lambda Expressions and Functional Interfaces**.
 
 
 ## **Lambda Expressions**
 
-**A Lambda expression is an anonymous (i.e. unnamed) method.*However this method is not executed on its own. Instead, it is used to implement a method defined by a functional interface. Thus, a lambda expression results in a form of anonymous class. 
+**A Lambda expression is an anonymous (i.e. unnamed) method.** However, this method is not executed on its own. Instead, it is used to implement a method defined by a functional interface. Thus, a lambda expression results in a form of anonymous class. 
 
 - **Lambda expressions are commonly referred to as Closures.**
 - `->` is lambda operator.
 - A lambda expression itself cannot specify type parameters. Thus, a lambda expression cannot be generic. But a functional interface can be generic. 
-- A lambda expression can throw an exception. However if it throws a checked exception, then it must be compatible with the exception mentioned at throws clause of abstract method of functional interface.
+- A lambda expression can throw an exception. However, if it throws a checked exception, then it must be compatible with the exception mentioned at throws clause of abstract method in a functional interface.
 
 ### **Method References (:: Operator)**
 
 - A method reference provides a way to refer to a method without executing it. **It relates to lambda expressions because It too requires a target type context that consists of compatible functional interface.**
-- Method references (:: operator) are special type of lambda expressions. They are often used to create a simple lambda expressions by referencing existing methods.
+- Method references (:: operator) are special type of lambda expressions. They are often used to create simple lambda expressions by referencing existing methods.
 - When evaluated, a method reference also creates an instance of the functional interface.
 
 - There are four types of method references.
     1. **static methods**
-    2. **Bounded non-static method reference:-*If you want to refer to a non-static method of an already existing object, you need bounded non-static method reference. Bounded non-static method references are a great way to use already existing methods on variables, the current instance (this::) or superclass (super::). The lambda arguments are passed as the method arguments to the reference method of that specific object. You don't need an intermediate variable, you can combine the return value of another method call or field access directly with :: operator.
-    3. **Unbounded non-static method reference:-*Unbound non-static method reference not bound to a specific object, but they refer to an instance method of a type. 
+    2. **Bounded non-static method reference** — If you want to refer to a non-static method of an already existing object, you need bounded non-static method reference. Bounded non-static method references are a great way to use already existing methods on variables, the current instance (this::) or superclass (super::). The lambda arguments are passed as the method arguments to the reference method of that specific object. You don't need an intermediate variable, you can combine the return value of another method call or field access directly with :: operator.
+    3. **Unbounded non-static method reference** — Unbound non-static method reference not bound to a specific object, but they refer to an instance method of a type. 
     4. **Constructor reference**
 
 ## **Functional Interface**
 
-**A functional interface is an interface that contains one and only one abstract method.*However, it can contain many default, static, private methods. Furthermore, a functional interface defines the target type of a lambda expression. A funtional interface is sometimes referred to as a Single Abstract Method (SAM).
+**A functional interface is an interface that contains one and only one abstract method.**
+However, it can contain many _default, static, private_ methods. 
+Furthermore, a functional interface defines the target type of lambda expression. 
+A _functional_ interface is sometimes referred to as a _Single Abstract Method (SAM)_.
 
 When a lambda expression occurs in a targeted context:
 - An instance of a class is automatically created which implements the functional interface.
-- With the lambda expression which defines the behaviour for that abstract method of functional interface.
+- With the lambda expression which defines the behavior for that abstract method of functional interface.
 - When that abstract method is called, the lambda expression is executed. 
 - Thus, **a lambda expression transform a code segment into a object.**
 
 
-There are **four fundamental functional interfaces*in Java which are defined in java.util.function package.
+There are **four fundamental functional interfaces** in Java which are defined in `java.util.function` package.
 
 However, there are some variations in addition to the above functional interfaces.
 
-There are also some operator-based functional interfaces such as UnaryOperator (derived from Function), BinaryOperator(derived from BiFunction).
+There are also some operator-based functional interfaces 
+such as `UnaryOperator` (derived from `Function`), 
+`BinaryOperator`(derived from `BiFunction`).
 
-- **Consumer\<T>:-*It only accepts arguments and returns a result.
+- **Consumer<T>** — It only accepts arguments and returns a result.
   It has a functional method (abstract method) `accept(T t)` that returns nothing i.e. void.
   It also has a default method `andThen(Consumer<T>)`.<BR>
     `Consumer<String> consumer = (s) -> System.out.println(s);`<BR>
-  **Consumer Variations*- BiConsumer, DoubleConsumer, IntConsumer,
-  LongConsumer, ObjDoubleConsumer, ObjIntConsumer, ObjLongConsumer.
+  **Consumer Variations** — `BiConsumer`, `DoubleConsumer`, `IntConsumer`,
+  `LongConsumer`, `ObjDoubleConsumer`, `ObjIntConsumer`, `ObjLongConsumer`.<BR>
 
-- **Supplier\<T>:-*It does not accept any arguments and only returns a result.
+
+- **Supplier<T>** — It does not accept any arguments and only returns a result.
   It has a functional method (abstract method) `get()` that has no arguments and returns a type.
   <BR>
     `Supplier<Double> supplier = () -> Math.PI;`<BR>
-  **Supplier Variations*- BooleanSupplier, DoubleSupplier, IntSupplier, LongSupplier.
+  **Supplier Variations** — `BooleanSupplier`, `DoubleSupplier`, `IntSupplier`, `LongSupplier`.<BR>
 
-- **Function\<T, R>:-*It is a function that accepts arguments and returns a result.
+
+- **Function<T, R>** — It is a function that accepts arguments and returns a result.
   It has a functional method (abstract method) `R apply(T)`.
   T is the argument, and R is the return type.<BR>
     `Function<String, Integer> length = s -> s.length();`<BR>
-  **Function Variations*- BiFunction, DoubleFunction, DoubleToIntFunction,
-  DoubleToLongFunction, IntFunction, IntToDoubleFunction, IntToLongFunction,
-  LongFunction, LongToDoubleFunction, LongToIntFunction, ToDoubleBiFunction,
-  ToDoubleFunction, ToIntBiFunction, ToLongBiFunction, TolongFunction.
+  **Function Variations** — `BiFunction`, `DoubleFunction`, `DoubleToIntFunction`,
+  `DoubleToLongFunction`, `IntFunction`, `IntToDoubleFunction`, `IntToLongFunction`,
+  `LongFunction`, `LongToDoubleFunction`, `LongToIntFunction`, `ToDoubleBiFunction`,
+  `ToDoubleFunction`, `ToIntBiFunction`, `ToLongBiFunction`, `TolongFunction`.<BR>
 
-- **Predicate\<T>:-*A predicate means it is a boolean-valued function.
+
+- **Predicate<T>** — A predicate means it is a boolean-valued function.
   Predicate accept arguments to test against an expression and return a boolean primitive as their result.
   A Predicate is a functional interface for testing conditions and has a functional method `boolean test(T t)`.
-  T is the argument and it returns a boolean.<BR>
+  T is the argument, and it returns a boolean.<BR>
     `Predicate<Integer> predicate = i -> i%2 == 0;`<BR>
-**Predicate Variations*- BiPredicate, DoublePredicate, IntPredicate, LongPredicate.
+**Predicate Variations** — `BiPredicate`, `DoublePredicate`, `IntPredicate`, `LongPredicate`.<BR>
 
 
 
@@ -78,14 +87,17 @@ There are also some operator-based functional interfaces such as UnaryOperator (
 
 ## Functional Basics
 
-**_Lambda Calculus_*is a way to express computations with abstract functions and how to apply variables to them.
+**_Lambda Calculus_** is a way to express computations with abstract functions and how to apply variables to them.
 The below are pillars for the foundational concept for Lambda calculus.
 
-- **Abstraction*- An anonymous function is a **_lambda_*that accepts a single input.
-- **Application*- An abstraction (i.e. a lambda/anonymous function) is applied to a value to create a result. It is a function or method call.
-- β**Reduction*- The substitute of the abstraction's variable with applied argument.
+- **Abstraction** — An anonymous function is a **_lambda_** that accepts a single input.
+- **Application** — An abstraction (i.e. a lambda/anonymous function) is applied to a value to create a result. It is a function or method call.
+- β**Reduction** — The substitute of the abstraction's variable with applied argument.
 
-For example, an abstraction of a function that calculates a quadratic value **𝛌x.x*x*is identical to the java version mentioned below.
+For example,
+an abstraction of a function
+that calculates a quadratic value **`𝛌x.x*x`** is identical to the java version 
+mentioned below.
 
 ```java
 Function<Integer, Integer> quadratic = value -> value * value;
@@ -103,18 +115,19 @@ There are some key principles for functional programming:
 
 - **A first-class function is a function treated as first-class citizens**, i.e. treated like any other variable.
 - A first-class function can be:
-  - **Functions as an argument** - passed as an argument to another function. It can also be called as higher-order function.
-  - **Function return functions** - can be returned as a result of a function. It can also be called as higher-order function.
-  - **Functions as values** - assigned to a regular variable. It can also be stored as an array, object, map etc.
-- A **higher-order function*is only possible because of first-class functions. It can either a function that receives another function as an argument or a function that returns a new function.
+  - **Functions as an argument** — passed as an argument to another function. It can also be called as higher-order function.
+  - **Function return functions** — can be returned as a result of a function. It can also be called as higher-order function.
+  - **Functions as values** — assigned to a regular variable. It can also be stored as an array, object, map etc.
+- A **higher-order function** is only possible because of first-class functions. 
+It can either a function that receives another function as an argument or a function that returns a new function.
 
 ## Pure functions and Referential transparency
 
 FP categorizes functions into two categories: _pure_ and _impure_.
 
 **_Pure functions_ have two elemental guarantees**:
-- **Deterministic**— The same input always creates the same output. The return value of a _pure_ function must solely depend on its input arguments.
-- **No side effects*— They are self-contained without any kind of side effect. The code cannot affect the global or local state, like changing argument values or using any I/O. No side effects means, **it should be immutable**.
+- **Deterministic** — The same input always creates the same output. The return value of a _pure_ function must solely depend on its input arguments.
+- **No side effects** — They are self-contained without any kind of side effect. The code cannot affect the global or local state, like changing argument values or using any I/O. No side effects means, **it should be immutable**.
 
 Example of a _Pure function_:
 ```java
@@ -163,44 +176,68 @@ There are **three different immutable parts*available in JDK.
 - Immutable collections
   - **Unmodifiable collections** — Creates an unmodifiable view by using `Collections.unmodifiableXXX()` methods.
   - **Immutable Collection factory methods (Java 9+)** — Create an immutable collection by using `of(...)` methods ex: `List.of()`.
-  - **Immutable copies (Java 10+)** — Provides deeper level of immutability by using `copyOf()` static method.
+  - **Immutable copies (Java 10+)** — They support deeper level of immutability by using `copyOf()` static method.
 - Primitives and Primitive wrappers
 
-### **Strings In Java*
+### **Strings In Java**
 
 Strings are immutable in Java and are not a primitive value-based type.
 JVM applies various optimization techniques when string operations are performed.
 
-**String concatenation*<BR>
+**String concatenation**<BR>
 
 String concatenation (Using +) is now optimized from Java 9 onwards. 
 Each time a string is concatenated or modified, a new object is allocated at heap level.
-It uses **`invokedynamic`*(**aka Indy**) rather than the `StringBuilder`. 
+It uses **`invokedynamic`(aka Indy)** rather than the `StringBuilder`. 
 
 **String constant pooling for String Literals**<BR>
 
-When we create a String object using the new() operator, it always creates a new object in heap memory. On the other hand, if we create an object using String literal syntax e.g. “Baeldung”, it may return an existing object from the String pool, if it already exists. Otherwise, it will create a new String object and put in the string pool for future re-use.
+When we create a String object using the new() operator, it always creates a new object in heap memory. 
+On the other hand, if we create an object using String literal syntax (e.g. “Bob”), 
+then it may return an existing object from the String pool if it already exists. 
+Otherwise, it will create a new String object and put in the string pool for future re-use.
+
+
 Identical string literals are stored only once in a special memory region
-called **String constant pool*by the JVM and reused to save precious heap space. 
+called **String constant pool** by the JVM and reused to save precious heap space. 
+
+
 If a string could change, it would change for everyone using a reference to it in the pool. 
 To avoid this impact, 
 we can either create a new string by using constructor instead of creating a literal to circumvent string pooling. 
+
+
 Another technique is
 to use `intern()` method on any instance so that it returns a string with the same content from the string pool. 
 
-Before Java 7, the JVM placed the Java String Pool in the PermGen space, which has a fixed size — it can’t be expanded at runtime and is not eligible for garbage collection.
-The risk of interning Strings in the PermGen (instead of the Heap) is that we can get an OutOfMemory error from the JVM if we intern too many Strings.
-From Java 7 onwards, the Java String Pool is stored in the Heap space, which is garbage collected by the JVM. The advantage of this approach is the reduced risk of OutOfMemory error because unreferenced Strings will be removed from the pool, thereby releasing memory.
-Until Java 8, Strings were internally represented as an array of characters – char[], encoded in UTF-16, so that every character uses two bytes of memory.
+**Before Java 7**, the JVM placed the Java String Pool in the PermGen space, 
+which has a fixed size — it can’t be expanded at runtime and is not eligible 
+for garbage collection.
+The risk of interning Strings in the _PermGen_ (instead of the _Heap_) 
+is that we can get an `OutOfMemory` error from the JVM if we intern too many Strings.
 
-With Java 9 a new representation is provided, called Compact Strings. This new format will choose the appropriate encoding between char[] and byte[] depending on the stored content.
-Since the new String representation will use the UTF-16 encoding only when necessary, the amount of heap memory will be significantly lower, which in turn causes less Garbage Collector overhead on the JVM.
 
+**From Java 7** onwards, the Java String Pool is stored in the _Heap space_, 
+which is garbage collected by the JVM. 
+The advantage of this approach is the reduced risk of `OutOfMemory` error 
+because unreferenced Strings will be removed from the pool, thereby releasing memory.
+
+
+**Until Java 8**, Strings were internally represented as an array of characters – char[], encoded in UTF-16, so that every character uses two bytes of memory.
+
+
+**With Java 9** a new representation is provided, called **Compact Strings**. 
+This new format will choose the appropriate encoding between char[] and byte[] 
+depending on the stored content.
+Since the new String representation will use the _UTF-16_ encoding only when necessary, 
+the amount of heap memory will be significantly lower, which in turn causes less 
+Garbage Collector overhead on the JVM.
 
 
 ## **Functional Programming Techniques**
 
-The above-mentioned functional programming principles enable us to use several techniques to benefit from functional programming.
+The above-mentioned functional programming principles enable us to use several 
+techniques to benefit from functional programming.
 
 - Function composition
 - Monads
@@ -211,45 +248,66 @@ The above-mentioned functional programming principles enable us to use several t
 
 Pure functions can be combined to create more complex expressions.
 In mathematical terms,
-this means that the two functions `f(x)` and `g(y)` can be combined to a function `h(x) = g(f(x))`.
+this means that the two functions `f(x)` and `g(y)` can be combined to a 
+function `h(x) = g(f(x))`.
 This way, functions can be small and therefore easier to reuse.
 Function composition means composing complex functions by combining simpler functions.
 In Java, it can be achieved by using functional interfaces,
 which are target types for lambda expressions and method references.
 Any interface with single abstract method (SAM) can serve as a functional interface.
 Method chaining is the technique to compose multiple functions.
-Creating default methods in functional interfaces and static helper classes for functional interfaces another approach
+Creating default methods in functional interfaces and static helper classes 
+for functional interfaces is another approach
 to accommodate function composition.
 
 
 ## **Monads**
 
-A monad is just a monoid in the category of endofunctors.
+A monad is just a _monoid_ in the category of _endofunctors_.
 
 - Many FP concepts derived from Category theory (A general theory of functions in Mathematics).
-- Monad is an abstraction, which allows us to wrap a value, apply a set of transformations and get the value back with all transformations applied.
-- Monads are containers or structures that encapsulate values and computations. It is an object that can map itself to different results based on transformations.
+- Monad is an abstraction, which allows us to wrap a value, apply a set of 
+transformations and get the value back with all transformations applied.
+- Monads are containers or structures that encapsulate values and computations. 
+It is an object that can map itself to different results based on transformations.
 
-There are many monads in Java and some of them are Optional, Stream, CompletableFuture etc.
+There are many monads in Java and some of them are `Optional`, `Stream`, `CompletableFuture` etc.
 
 There are two types of Monads:
 
-- **Unit Monads**: Represent a type that wraps a given value. ***this**operation is responsible for wrapping the value. In Java, ***this**operation can accept values from different types just by leveraging Generics.
+- **Unit Monads** — Represent a type that wraps a given value. 
+**this** operation is responsible for wrapping the value. 
+In Java, **this** operation can accept values from different types just by 
+leveraging Generics.
 
-- **Bind Monads**: It allows transformation to be executed using the held value and returns a new monad value (a value wrap in the monad type).
+- **Bind Monads**: It allows transformation to be executed using the held value 
+and returns a new monad value (a value wrap in the monad type).
 
 Every monad needs to obey three important laws:
 
-- **left identity**: When applying to a monad, it should yield the same outcome as applying the transformation to the held value.
-- **right identity**: When sending a monad transformation (convert the value to a monad), the yield outcome must be the same as wrapping the value in a new monad.
-- **associativity**: When chaining transformations, it should not matter how transformations are nested.
+- **left identity** — When applying to a monad, it should yield the same outcome 
+as applying the transformation to the held value.
+
+- **right identity** — When sending a monad transformation (convert the value to a monad), 
+the yield outcome must be the same as wrapping the value in a new monad.
+
+- **associativity** — When chaining transformations, it should not matter how 
+transformations are nested.
 
 ## **Currying**
 
-Function currying means converting a function from taking multiple arguments into a sequence of functions that each takes only a single argument. The currying technique borrows its name from the mathematician and logician Haskell Brooks Curry (1900–1982). He’s not only the namesake of the functional technique called currying, he also has three different programming languages named after him: Haskell, Brook, and Curry.
+Function currying means converting a function from taking multiple arguments into 
+a sequence of functions that each takes only a single argument. 
+The currying technique borrows its name from the mathematician and 
+logician Haskell Brooks Curry (1900–1982). 
+He’s not only the namesake of the functional technique called currying, 
+he also has three different programming languages named 
+after him: Haskell, Brook, and Curry.
 
-- Currying is a mathematical technique of converting a function that takes multiple arguments into a sequence of functions that take a single argument.
-- It is a powerful function composition technique where we don’t need to call a function with all its arguments.
+- Currying is a mathematical technique of converting a function that takes 
+multiple arguments into a sequence of functions that take a single argument.
+- It is a powerful function composition technique where we don’t need to 
+call a function with all its arguments.
 - A curried function does not realize its effect until it receives all the arguments.
 - **Currying depending on the language to provide two fundamental features: lambda expressions and closures**.
 
@@ -270,14 +328,31 @@ Sequence of curried functions: `x = g(a)(b)(c)`
 
 ## **Recursion**
 
-Recursion is a problem-solving technique that solves a problem by partially solving problems of the same form and combining the partial results to finally solve the original problem. In layperson’s terms, recursive functions call themselves, but with a slight change in their input arguments, until they reach an end condition and return an actual value.
-Pure functional programming often prefers using recursion instead of loops or iterators. Some of them, like Haskell, go a step further and don’t have loops like `for` or `while` at all. The repeated function calls can be inefficient and even dangerous due to the risk of the stack overflowing. That’s why many functional languages utilize optimizations like “unrolling” recursion into loops or tail-call optimization to reduce the required stack frames. Java does not support any of these optimization techniques.
+Recursion is a problem-solving technique that solves a problem by partially 
+solving problems of the same form and combining the partial results to 
+finally solve the original problem. 
+
+In layperson’s terms, recursive functions call themselves, but with a slight 
+change in their input arguments, until they reach an end condition and return 
+an actual value.
+Pure functional programming often prefers using recursion instead of 
+loops or iterators. 
+Some of them, like Haskell, go a step further and don’t have loops 
+like `for` or `while` at all. 
+The repeated function calls can be inefficient and even dangerous due to the 
+risk of the stack overflowing. 
+That’s why many functional languages utilize optimizations like “unrolling” 
+recursion into loops or tail-call optimization to reduce the required stack frames. 
+Java does not support any of these optimization techniques.
 
 - It allows us to break down a problem into smaller pieces.
 - The main benefit of recursion is that it helps to eliminate the side effects, i.e., looping (in imperative paradigm).
 - **Head Recursion**:
   - Making the recursive call before calculating the result at each step or in words at the head of the calculation.
-  - A **drawback for this type of recursion*is that every step has to hold the state of all previous steps until we reach the base case. This is not really a problem for small numbers, but holding the state for large numbers can be inefficient.
+  - A **drawback for this type of recursion** is that every step has to hold the state of all previous 
+  steps until we reach the base case. 
+  This is not really a problem for small numbers, but holding the state for large 
+  numbers can be inefficient.
 - **Tail Recursion**:
   - We ensure that the recursive call is the last call a function makes.
   - Java still does not have support for this tail-call recursion optimization.
@@ -325,6 +400,78 @@ There are two kinds of tuples: **Structural tuples and Nominal tuples.**<br>
 **Nominal tuples** — don't use an index to access their data but use component names.
 
 In Java, **Record is a nominal tuple**.
+
+## **Optional**
+
+`Optional<T>` is a _monad_ in Java. 
+We shouldn't rely solely on Optionals to handle Null values. 
+There are some prior techniques which are useful before the introduction
+of Optional in Java.
+
+Before `Optional<T>`, there are three different ways to handle Null values.
+
+- Best practices
+- Tool assisted Null checks
+- Specialized types similar to Optional<T> — such as a rudimentary Optional type provided by Google Guava framework.
+
+
+### **Best Practices for handling Null**
+
+- **Don't initialize a variable to Null** — Variables should always have a Non-Null value. 
+The additional benefit is that it makes the variable effectively final if you don’t reassign it later, 
+so you can use them as out-of-body variables in lambda expressions.
+```text
+// DON'T
+
+String value = null;
+
+if (condition) {
+  value = "Condition is true";
+} else {
+  value = "Fallback if false";
+}
+
+// DO
+
+String asTernary = condition ? "Condition is true"
+                             : "Fallback if false";
+
+String asRefactored = refactoredMethod(condition);
+
+```
+- **Don't pass/accept/return Null** — As variables should not be null, 
+so should any arguments and return values avoid being null. 
+Non-required arguments being Null can be avoided by overloading a method or constructor.
+If method signatures clash due to identical argument types, you can always resort to 
+_static_ methods with more explicit names instead. 
+After providing specific methods and constructors for non-mandatory values, 
+you should not accept Null in the original ones if it’s appropriate. 
+The easiest way to do this is using the static `requireNonNull()` method available on `Java.util.Objects`
+```java
+public record User(long id, String firstname, String lastname) {
+
+  // DO: Additional constructor with default values to avoid null values
+  public User(long id) {
+    this(id, "n/a", "n/a");
+  }
+}
+```
+- **Null is acceptable as an implementation detail** — Avoiding null is essential for 
+the public surface of your code but is still sensible as an implementation detail. 
+Internally, a method might use null as much as needed as long as it won’t return 
+it to the callee.  
+
+
+**Optional<T>** is a safe wrapper around an actual value or a possible Null value
+and supports functional call chains. 
+The original design goal was to create a new type to support the _optional return idiom_, 
+meaning that it represents the result of a query or Collection access. 
+That behavior is clearly visible in the Optional-based terminal Stream operations.
+Contrary to Streams, though, they are not lazily connected until a terminal-like 
+operation is added to the pipeline. 
+Every operation resolves as soon as it’s added to the fluent call.
+
+
 </div>
 
 

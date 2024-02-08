@@ -2,7 +2,12 @@ package functional;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 /**
  Optional is highly recommended to be used as return types only.
@@ -52,6 +57,93 @@ public class Optionals {
         hasVal.ifPresentOrElse(v -> System.out.println("The string in hasVal is: " + v),
                 () -> System.out.println("noVal has no value"));
 
+        // 3rd example
+        Optional<Content> getIt = get("ABC");
+        System.out.println(getIt.isPresent());
+
+        String hasValue = "Optionals are awesome!";
+        String hasNull = null;
+        // Optional.ofNullable(T value) if the value might be null
+        // Optional.of(T value) if the value must be non-null
+        // Optional.empty() if there’s no value
+        Optional<String> mayBeOptional = Optional.ofNullable(hasValue); //
+        Optional<String> emptyOptional = Optional.ofNullable(hasNull);
+        Optional<String> mustHaveValue = Optional.of(hasValue);
+        emptyOptional = Optional.of(hasNull); // throws NPE
+        Optional<String> noValue = Optional.empty();
+
+        mayBeOptional.ifPresentOrElse(System.out::println,
+                () -> System.out.println("No value found!"));
+
+        // 4th example
+        record User(boolean isActive) {}
+        record Group(Optional<User> admin) {}
+        record Permissions(List<String> permissions, Group group) {
+            public boolean isEmpty() { return permissions.isEmpty(); }
+        }
+
+        User admin = new User(true);
+        Group group = new Group(Optional.of(admin));
+        Permissions permissions = new Permissions(List.of("A", "B", "C"), group);
+        // Intermediate operations to find an active admin
+        boolean isActiveAdmin = Optional.ofNullable(permissions)
+                .filter(Predicate.not(Permissions::isEmpty))
+                .map(Permissions::group)
+                .flatMap(Group::admin)
+                .map(User::isActive)
+                .orElse(Boolean.FALSE);
+
+        // optionals as stream elements
+        List<Permissions> listOfPermissions = List.of(new Permissions(List.of("A", "B", "C"),
+                group));
+        List<User> activeUsers = listOfPermissions.stream()
+                .filter(Predicate.not(Permissions::isEmpty))
+                .map(Permissions::group)
+                .map(Group::admin)
+                .filter(Optional::isPresent)
+                .map(Optional::orElseThrow)
+                .filter(User::isActive)
+                .toList();
+
+        List<User> activeUsersFlatMap =
+                listOfPermissions.stream()
+                        .filter(Predicate.not(Permissions::isEmpty))
+                        .map(Permissions::group)
+                        .map(Group::admin)
+                        // A singular flatMap call replaces the
+                        // previous filter and map operations.
+                        .flatMap(Optional::stream)
+                        .filter(User::isActive)
+                        .toList();
+
+        // Optional best practices
+        // DON'T DO THIS - Don't use optional for simple null checks
+        String fallbackValue = "fallback value";
+        String maybeNull = null;
+        String value = Optional.ofNullable(maybeNull).orElse(fallbackValue);
+        // DON'T DO THIS
+        if (Optional.ofNullable(maybeNull).isPresent()) { }
+        // DO THIS INSTEAD
+        value = maybeNull != null ? maybeNull : fallbackValue;
+        // DO THIS INSTEAD
+        if (maybeNull != null) { }
+
+    }
+
+    static Optional<Content> loadFromDB(String identifier) {
+        return Optional.of(new Content(false));
+    }
+
+    // Usage of Optional in a functional call chain
+    static Optional<Content> get(String contentId) {
+        Map<String, Content> cache = new HashMap<>();
+
+        return Optional.ofNullable(contentId)
+                .filter(Predicate.not(String::isBlank))
+                .map(String::toLowerCase)
+                .map(cache::get)
+                .or(() -> loadFromDB(contentId))
+                .filter(Content::isPublished);
     }
 
     private static Optional<String> predictions() {     
@@ -81,3 +173,4 @@ public class Optionals {
 }
 
 record Dog(String name, int age) {}
+record Content(boolean isPublished) {}
