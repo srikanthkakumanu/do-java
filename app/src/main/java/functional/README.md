@@ -462,8 +462,8 @@ Internally, a method might use null as much as needed as long as it won’t retu
 it to the callee.  
 
 
-**Optional<T>** is a safe wrapper around an actual value or a possible Null value
-and supports functional call chains. 
+**Optional<T> is a safe wrapper around an actual value or a possible Null value
+and supports functional call chains**. 
 The original design goal was to create a new type to support the _optional return idiom_, 
 meaning that it represents the result of a query or Collection access. 
 That behavior is clearly visible in the Optional-based terminal Stream operations.
@@ -471,6 +471,157 @@ Contrary to Streams, though, they are not lazily connected until a terminal-like
 operation is added to the pipeline. 
 Every operation resolves as soon as it’s added to the fluent call.
 
+## **Exception Handling**
+
+The following are the techniques that can be **used to circumvent the exceptions** in the functional paradigm of Java,  
+however, all these options **are imperfect workarounds** 
+to mitigate exception handling in functional code and not the real solution.
+
+- Safe method extraction
+- Un-checking the exceptions
+- Sneaky throws
+
+### **Safe Method Extraction**
+
+**Safe method extraction** — Creating a “safe” method decouples the actual work 
+from handling any Exception, restoring the principle of the caller being responsible 
+for any checked Exceptions. 
+Any functional code can use the safe method instead. 
+It is an improvement over using try-catch blocks in a lambda 
+because you keep the expressiveness of inline lambdas and method references and have 
+a chance to handle any Exceptions.
+
+Safe method extraction is akin to a more localized version of the _facade pattern_.
+Instead of wrapping a whole class to provide a safer, context-specific interface, 
+only specific methods get a new facade to improve their handling for particular 
+use cases. 
+That reduces the affected code and still gives you the advantages of a facade, 
+such as reduced complexity and improved readability. 
+It’s also a good starting point for future refactoring efforts.
+
+However, the actual caller of the method—the Stream operation—gets no chance to deal 
+with the Exception, making the handling opaque and inflexible.
+
+```java
+public class SafeMethodExtract {
+    public static void main(String[] args) {
+        SafeMethodExtract sme = new SafeMethodExtract();
+        Stream<Path> paths = Stream.of(
+                Path.of("C:\\books\\text1.txt"),
+                        Path.of("C:\\books\\text2.txt"),
+                        Path.of("C:\\books\\text3.txt"));
+        paths.map(sme::safeRead)
+                .filter(Objects::nonNull)
+                .forEach(System.out::println);
+    }
+
+    String safeRead(Path path) {
+        try {
+            return Files.readString(path);
+        } catch (IOException e) {
+            //throw new RuntimeException(e);
+            System.err.println("IOException thrown ");
+            return null;
+        }
+    }
+}
+```
+
+### **Un-checking the exceptions**
+
+**Un-checking the exceptions** — It is an approach that uses specialized functional interfaces 
+that use the _throws_ keyword to wrap the offending lambda or method reference. 
+It catches the original Exception and rethrows it as an unchecked RuntimeException, 
+or one of its siblings. 
+
+It is to deal with checked Exceptions goes against the 
+fundamental purpose of using checked Exceptions in the first place. 
+Instead of dealing with a checked Exception directly, 
+you hide it in an unchecked Exception to circumvent the catch-or-specify requirement. 
+It’s a nonsensical but effective way to make the compiler happy.
+
+```java
+public class UncheckExceptions {
+
+    /**
+     * Function interface - The wrapper extends the original type to act
+     * as a drop-in replacement.
+     */
+    @FunctionalInterface
+    interface ThrowingFunction<T, R> extends Function<T, R> {
+        // This single abstract method (SAM) mimics the original but throws an Exception.
+        R applyThrows(T element) throws Exception;
+
+        /**
+         *
+         * This original SAM is implemented as a default method to wrap any Exception
+         * as an unchecked RuntimeException.
+         */
+        @Override
+        default R apply(T t) {
+            try { return applyThrows(t); }
+            catch (Exception e) { throw new RuntimeException(e); }
+        }
+
+        // A static helper to uncheck any throwing Function<T, R> to circumvent
+        // the catch-or-specify requirement.
+        static <T, R> Function<T, R> uncheck(ThrowingFunction<T, R> fn) {
+            return fn;
+        }
+    }
+
+    static String safeRead(Path path) {
+        try {
+            return Files.readString(path);
+        } catch (IOException e) {
+            //throw new RuntimeException(e);
+            System.err.println("IOException thrown ");
+            return null;
+        }
+    }
+    public static void main(String[] args) {
+        var paths = Stream.of(Path.of("C:\\books\\text1.txt"),
+                Path.of("C:\\books\\text2.txt"),
+                Path.of("C:\\books\\text3.txt"));
+
+        // ThrowingFunction<Path, String> throwingFn = Files::readString;
+        // Alternatively, can be done like below
+        paths.map(ThrowingFunction.uncheck(Files::readString))
+                .filter(Objects::nonNull)
+                .forEach(System.out::println);
+    }
+}
+```
+
+### **Sneaky throws**
+
+**Sneaky throws** — Sneaky throws idiom is a hack to throw a checked exception without 
+declaring it with the _throws_ keyword in a method signature.
+
+Instead of throwing a checked Exception using the _throw_ keyword in a method’s body, 
+which requires a _throws_ declaration in the method signature, the actual Exception 
+is thrown by another method.
+
+Note:—Regardless of the actual type for the argument e, 
+the compiler assumes throws E to be a RuntimeException 
+and thereby exempts the method from the catch-or-specify requirement. 
+The compiler might not complain, **but this approach is highly problematic**.
+
+### **Right Approach — Functional way of handling exceptions**
+
+To handle the exceptions in a functional way, **We can follow multiple approaches**.
+Please refer the below examples for more details:
+
+[TryFunction Example](https://github.com/srikanthkakumanu/do-java/blob/master/app/src/main/java/functional/exceptions/TryFunction.java) <BR>
+[ResultTransformers Example](https://github.com/srikanthkakumanu/do-java/blob/master/app/src/main/java/functional/exceptions/ResultTransformers.java) <BR>
+- Can use `java.util.concurrent.CompletableFuture`.
+- **Define a Record with Generics** ex. `Result<V, E>` to deal with:
+  - **Add Transformer methods to** `Result<V, E>`: Transform a value or Exception by declaring some dedicated map methods or a combined one to handle both use cases at once.
+  - **Add certain state methods** to `Result<V, E>`: To react to a certain state such as success or exception scenarios, add _ifSuccess_, _ifFailure_, and _handle_ methods.
+  - **Provide a fallback value to** `Result<V, E>`: add convenience methods for providing fallback values. add methods like _orElse_, _orElseGet_ and _orElseThrow_ (For _orElseThrow_, along with _sneakyThrow_ approach). 
+- The **Try/Success/Failure Pattern**: Scala way of dealing with exceptions by **defining a Scaffold type such as** `Try<T, R>`.
+  - **Define a pipeline methods** for different scenarios such as _success_, _failure_, etc. 
+- Use an established functional third-party library like **vavr, or jOOλ (JOOL)** which provides a versatile `Try` type and much more. They are quite comprehensive and battle-tested implementations that are ready to use.
 
 </div>
 
