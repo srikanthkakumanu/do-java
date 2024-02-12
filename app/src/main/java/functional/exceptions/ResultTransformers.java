@@ -14,7 +14,7 @@ import java.util.stream.Stream;
  * Note: A functional Result object to handle exceptions in quite simplistic manner with
  * minimal code. If you intend to use a type like Result<V, E>, you should check out
  * one of the functional libraries of the Java ecosystem.
- * Projects like vavr, jOOλ (pronounced “JOOL”), and Functional Java provide quite
+ * Projects like vavr, jOOL (pronounced as JOOL), and Functional Java provide quite
  * comprehensive and battle-tested implementations that are ready to use.
  *
  * This example has:
