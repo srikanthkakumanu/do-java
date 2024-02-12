@@ -668,6 +668,9 @@ Recursion is a problem-solving technique that solves a problem by partially
 solving problems of the same form and combining the partial results to 
 finally solve the original problem. 
 
+Another definition is that Recursion is an approach to solving a problem that
+can be broken down into smaller versions of itself.
+
 In layperson’s terms, recursive functions call themselves, but with a slight 
 change in their input arguments, until they reach an end condition and return 
 an actual value.
@@ -683,6 +686,8 @@ Java does not support any of these optimization techniques.
 
 - It allows us to break down a problem into smaller pieces.
 - The main benefit of recursion is that it helps to eliminate the side effects, i.e., looping (in imperative paradigm).
+- Recursive calls fall into two categories _head_ and _tail_ recursion, **depending on the location of the recursive call in the method body**.
+- The main **difference between _head_ and _tail_ recursion is how the call stack is constructed**.
 - **Head Recursion**:
   - Making the recursive call before calculating the result at each step or in words at the head of the calculation.
   - A **drawback for this type of recursion** is that every step has to hold the state of all previous 
