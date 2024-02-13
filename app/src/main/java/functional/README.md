@@ -679,7 +679,7 @@ loops or iterators.
 Some of them, like Haskell, go a step further and don’t have loops 
 like `for` or `while` at all. 
 The repeated function calls can be inefficient and even dangerous due to the 
-risk of the stack overflowing. 
+risk of the stack overflowing and may result in throwing `StackOverflowError`. 
 That’s why many functional languages utilize optimizations like “unrolling” 
 recursion into loops or tail-call optimization to reduce the required stack frames. 
 Java does not support any of these optimization techniques.
@@ -697,6 +697,35 @@ Java does not support any of these optimization techniques.
 - **Tail Recursion**:
   - We ensure that the recursive call is the last call a function makes.
   - Java still does not have support for this tail-call recursion optimization.
+
+**Stack Frame**
+
+A stack frame contains the state of a single method invocation. 
+Each time your code calls a method, the JVM creates and pushes a new frame on the 
+thread’s stack. 
+The default stack size of most JVM implementations is one _megabyte_. 
+You can set a bigger stack size with the flag `-Xss`.
+After returning from a method, its stack frame gets popped and discarded.
+The actual maximum stack depth depends on the available stack size, and what’s 
+stored in the individual frames.
+
+**StackOverflowError**
+
+Each time recursion method is called, it is considered as a separate method call and, 
+therefore, a new stack frame on the call stack. 
+The problem is, though, that the available stack size is finite. 
+Too many calls will fill up the available stack space and 
+eventually throw a `StackOverflowError`. 
+To prevent the stack from overflowing, many modern compilers use 
+_tail-call optimization/elimination_ to remove no-longer-required frames in 
+recursive call chains. 
+If no additional calculations take place after a recursive call, 
+the stack frame is no longer needed and can be removed. 
+That reduces the stack frame 
+space complexity of the recursive call from `O(N)` to `O(1)`, resulting in faster 
+and more memory-friendly machine code without an overflowing stack.
+Sadly, the Java compiler and runtime lack that particular ability, as of early 2023.
+
 
 ## 4.11 **Closures**
 
