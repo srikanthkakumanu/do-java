@@ -8,7 +8,7 @@ import java.util.Objects;
  * step-by-step creation
  * ---------------------
  * One of the advantages of immutable data structures is the lack of
- * “half-initialized” objects.
+ * half-initialized objects.
  *
  * Still, not every data structure is initializable all at once.
  *

@@ -771,6 +771,8 @@ There are two kinds of tuples: **Structural tuples and Nominal tuples.**<br>
 
 In Java, **Record is a nominal tuple**.
 
+# 5. **Functional Design Patterns**
+
 
 
 </div>
