@@ -2,6 +2,9 @@
 
 # **Functional programming in Java**
 
+Functional programming (FP) uses **mathematical principles** to solve problems 
+by utilizing a **declarative code style**.
+
 Key to the understanding Java's functional programming/implementation 
 of Lambda expressions are two constructs: **Lambda Expressions and Functional Interfaces**.
 
@@ -423,6 +426,9 @@ method that utilizes a `Supplier` to delay the execution to when it is necessary
 
 ## 4.1 Functional Basics
 
+Functional programming (FP) uses **mathematical principles** to solve problems
+by utilizing a **declarative code style**.
+
 **_Lambda Calculus_** is a way to express computations with abstract functions and how to apply variables to them.
 The below are pillars for the foundational concept for Lambda calculus.
 
@@ -778,11 +784,11 @@ usually required by many object-oriented design patterns.
 
 The most commonly used design patterns in functional paradigm are:
 
-| Category   | Patterns         |
-|------------|------------------|
+| Category   | Patterns             |
+|------------|----------------------|
 | Creational | _Factory_, _Builder_ |
-| Structural | _Decorator_        |
-| Behavioral | _Strategy_         |
+| Structural | _Decorator_          |
+| Behavioral | _Strategy_           |
 
 
 </div>
