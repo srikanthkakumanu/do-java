@@ -773,6 +773,16 @@ In Java, **Record is a nominal tuple**.
 
 # 5. **Functional Design Patterns**
 
+Functional principles allow the removal of a lot of the boilerplate code 
+usually required by many object-oriented design patterns.
+
+The most commonly used design patterns in functional paradigm are:
+
+| Category   | Patterns         |
+|------------|------------------|
+| Creational | _Factory_, _Builder_ |
+| Structural | _Decorator_        |
+| Behavioral | _Strategy_         |
 
 
 </div>

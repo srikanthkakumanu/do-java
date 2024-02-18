@@ -2,6 +2,11 @@ package patterns.factory.fp;
 
 import java.util.function.Function;
 
+/**
+ *  Factory design pattern purpose is to create an instance of an object
+ *  without exposing the implementation details of how to create such
+ *  objects by using a factory instead.
+ */
 public class Main {
     public static void main(String[] args) {
         var triangle = ShapeType.TRIANGLE.newInstance(Color.GREEN);
