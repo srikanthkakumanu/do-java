@@ -19,6 +19,16 @@ To use data structures in concurrent environments, they have to be **thread-safe
 Executing code in parallel usually lacks such coordination because it’s focused on the execution itself. This makes it safer, more natural, and easier to reason with.
 
 
+| **Concept** | **Concurrency** | **Parallelism** |
+| --- | --- | --- |
+| **Definition** | Multiple tasks in progress at the same time | Multiple tasks executing at the same time |
+| **Focus** | Task management, scheduling, responsiveness | Speed, throughput, raw performance |
+| **Requires multiple CPUs?** | No | Yes |
+| **Example analogy** | One chef juggling many dishes | Many chefs cooking dishes simultaneously |
+| **Primary goal** | Structure, responsiveness, avoiding blocking | Faster execution by dividing work |
+| **Typical use cases** | Servers handling many requests, async I/O | CPU-bound workloads, ML training, batch processing |
+| **Programming model** | async/await, event loops, coroutines | Threads, multiprocessing, SIMD, GPU kernels |
+
 ## **1. Thread Management**
 
 **interrupt(), join(), yield() are basic mechanisms to communicate among threads.**
